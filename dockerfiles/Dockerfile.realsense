@@ -1,0 +1,99 @@
+#Dockerfile for IntelRealSense library and pyrealsense python package
+#Used to run the d4xx_to_mavlin.py script which reads data from 
+#an Intel RealSense D435 camera, builds mavlink messages, 
+#and sends the messages to a flight controller
+
+#Verified on Raspberry Pi 4 / Raspbian - Debian GNU/Linux 11 (bullseye)
+FROM python:3.9-bookworm as librealsense-builder
+
+ENV LIBRS_VERSION=2.55.1
+#ENV LIBRS_VERSION=2.54.2
+
+# To avoid waiting for input during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Builder dependencies installation
+RUN apt-get update \
+    && apt-get install -qq -y --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    libssl-dev \
+    libusb-1.0-0-dev \
+    pkg-config \
+    libgtk-3-dev \
+    libglfw3-dev \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Download sources
+WORKDIR  /usr/src/
+
+RUN curl https://codeload.github.com/IntelRealSense/librealsense/tar.gz/refs/tags/v$LIBRS_VERSION -o librealsense.tar.gz 
+RUN tar -zxf librealsense.tar.gz \
+    && rm librealsense.tar.gz 
+RUN ln -s /usr/src/librealsense-$LIBRS_VERSION /usr/src/librealsense
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    python-is-python3 \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Build and install
+RUN cd /usr/src/librealsense \
+    && mkdir build && cd build \
+    && cmake \
+    -DPYTHON_EXECUTABLE=/usr/bin/python3 \
+    -DCMAKE_INSTALL_PREFIX=/opt/librealsense \
+    -DBUILD_GRAPHICAL_EXAMPLES=OFF \
+    -DBUILD_PYTHON_BINDINGS:bool=true \
+    -DBUILD_SHARED_LIBS=false \
+    -DCMAKE_BUILD_TYPE=Release ../ 
+
+RUN cd /usr/src/librealsense/build \
+     && make -j$(($(nproc)-1)) all \
+     && make install
+
+FROM python:3.9-bookworm as librealsense
+
+WORKDIR  /usr/src/app
+
+# # Copy binaries from builder stage
+COPY --from=librealsense-builder /opt/librealsense /usr/local/
+COPY --from=librealsense-builder /usr/src/librealsense/config/99-realsense-libusb.rules /etc/udev/rules.d/
+COPY --from=librealsense-builder /usr/src/librealsense/config/99-realsense-d4xx-mipi-dfu.rules /etc/udev/rules.d/
+ENV PYTHONPATH=$PYTHONPATH:/usr/local/lib
+
+RUN apt-get update \
+    && apt-get install -qq -y --no-install-recommends \
+    libusb-1.0-0 \
+    udev \
+    apt-transport-https \
+    ca-certificates  \
+    python3-gst-1.0 \
+    gir1.2-gst-rtsp-server-1.0 \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-ugly \
+    libx264-dev \ 
+    libgirepository1.0-dev
+
+RUN pip install --no-cache-dir \
+     pyrealsense2 \
+     transformations \
+     pymavlink \
+     apscheduler==3.10.4 \
+     pyserial==3.5 \
+     numba==0.59.1 \
+     opencv-python==4.9.0.80 \
+     pycairo==1.26.0 \
+     PyGObject==3.48.1 \
+     debugpy
+
+COPY src/ .
+
+# For the entrypoint I want to run the python realsense script
+ENTRYPOINT ["python", "d4xx_to_mavlink.py"]

@@ -1,0 +1,31 @@
+# Enable this systemd service via:
+#
+# sudo cp ./oxchief-realsense.service /etc/systemd/system/
+# sudo systemctl daemon-reload
+# sudo systemctl enable oxchief-realsense.service
+
+
+# Final location of service:
+#
+# /etc/systemd/system/oxchief-realsense.service
+
+[Unit]
+Description=OxChief RealSense service
+After=oxchief-autopilot-client.service
+Requires=oxchief-autopilot-client.service
+#IF NOT USING TAILSCALE, then comment out 2 lines above (i.e. "After" / "Requires" ), and uncomment these:
+#After=multi-user.target
+#Requires=network.target
+
+[Service]
+Type=idle
+User=pi
+WorkingDirectory=/home/pi/src/oxchief/oxchief-client
+ExecStart=/home/pi/src/oxchief/oxchief-client/scripts/oxchief.sh obstacles
+Restart=on-failure
+# Restart only when the service process does not exit cleanly (non-zero exit code)
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
+

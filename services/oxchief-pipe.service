@@ -1,0 +1,28 @@
+
+# Enable this systemd service via:
+#
+# sudo cp ./oxchief-pipe.service /etc/systemd/system/
+# sudo systemctl daemon-reload
+# sudo systemctl enable oxchief-pipe.service
+
+
+# Final location of service:
+#
+# /etc/systemd/system/oxchief-pipe.service
+
+[Unit]
+Description=OxChief pipe service -- pipe shell commands from OxChief Docker container to host
+After=oxchief-realsense.service
+Requires=oxchief-autopilot-client.service
+
+[Service]
+Type=idle
+WorkingDirectory=/home/pi/src/oxchief/oxchief-client
+#ExecStart=/home/pi/src/oxchief/oxchief-client/re.sh
+ExecStart=/home/pi/src/oxchief/oxchief-client/scripts/oxchief.sh pipe
+Restart=on-failure 
+# Restart only when the service process does not exit cleanly (non-zero exit code)
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

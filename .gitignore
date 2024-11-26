@@ -1,0 +1,26 @@
+device-names.txt
+devices.txt
+device-names2.txt
+devices2.txt
+
+device-2023-nov-9-ucenter-config.json
+
+env
+
+mav.parm
+mav.tlog
+mav.tlog.raw
+
+oxchief.db
+
+temp/*
+tests/*
+
+.oxchief
+
+.devcontainer
+.vscode
+
+# Python cache files
+__pycache__/
+*.pyc

@@ -1,0 +1,45 @@
+# Business Source License 1.1 (BSL-1.1)
+
+Copyright (c) 2024, OxChief
+
+All rights reserved.
+
+## Redistribution and use
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+### Source Code Forms
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions, and the following disclaimer.
+* Redistributions in source code form must be distributed under the terms of this Business Source License 1.1 (BSL-1.1).
+
+### Binary Code Forms
+
+* Redistributions in binary code form must be distributed under the terms of this Business Source License 1.1 (BSL-1.1).
+* Redistributions in binary code form must reproduce the above copyright notice, this list of conditions, and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+### Usage Limitations
+
+* Redistributions of source code or binary code forms of the Software must not be used to:
+	+ Provide a service or software as a service (SaaS);
+	+ Support or operate a business;
+	+ Generate revenue, except for cases where the Software is used for educational or research purposes.
+
+### Disclaimer of Warranty
+
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Definitions
+
+* **Software**: means the oxchief-client software program and associated documentation to which this license is attached.
+* **Source Code Forms**: means the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.
+* **Binary Code Forms**: means any form resulting from mechanical transformation or translation of the Source Code Forms, including but not limited to compiled object code, generated documentation, and conversions to other media types.
+
+## Open-Source License Conversion
+
+* After four (4) years from the Effective Date, this Business Source License 1.1 (BSL-1.1) shall automatically convert to the GNU General Public License Version 3 (GPL-3.0), and the Software shall be subject to the terms and conditions of the GPL-3.0.
+
+## Effective Date
+
+November 26, 2024
