@@ -12,23 +12,23 @@
 
 [Unit]
 Description=OxChief autopilot client service
-After=multi-user.target
-Requires=network.target
+#After=multi-user.target
+#Requires=network.target
 
 ######################
 ###### TAILSCALE #####
 ######################
 
-#IF USING TAILSCALE, then comment out "After" / "Requires" above
-#and uncomment 2 "After" / "Requires" below:
+#IF NOT USING TAILSCALE, then uncomment out "After" / "Requires" above
+#and comment 2 "After" / "Requires" below:
 
-#After=tailscaled.service
-#Requires=tailscaled.service
+After=tailscaled.service
+Requires=tailscaled.service
 
 [Service]
 Type=idle
 WorkingDirectory=/home/pi/src/oxchief/oxchief-client
-ExecStartPre=sleep 1s
+ExecStartPre=sleep 10s
 ExecStart=/home/pi/src/oxchief/oxchief-client/re.sh
 Restart=on-failure
 # Restart only when the service process does not exit cleanly (non-zero exit code)
