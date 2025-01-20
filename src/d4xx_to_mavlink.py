@@ -477,6 +477,27 @@ def realsense_connect():
     depth_scale = depth_sensor.get_depth_scale()
     progress("INFO: Depth scale is: %s" % depth_scale)
 
+    # Set the confidence threshold (0-15, where 0 is the highest confidence)
+    if depth_sensor.supports(rs.option.confidence_threshold):
+        progress("INFO: Confidence threshold is supported")
+        depth_sensor.set_option(rs.option.confidence_threshold, 1)
+        progress("INFO: Confidence threshold set to 1")
+    else:
+        progress("INFO: Confidence threshold is not supported")
+        
+    # Enable auto exposure
+    if depth_sensor.supports(rs.option.enable_auto_exposure):
+        depth_sensor.set_option(rs.option.enable_auto_exposure, 1)
+        progress("INFO: Auto exposure enabled")
+
+    # Set the Region-of-Interest (ROI) for auto-exposure to the lower half of the image
+    sensor = profile.get_device().first_color_sensor()
+    sensor.set_option(rs.option.auto_exposure_roi_left, 0)
+    sensor.set_option(rs.option.auto_exposure_roi_right, DEPTH_WIDTH)
+    sensor.set_option(rs.option.auto_exposure_roi_top, DEPTH_HEIGHT // 2)
+    sensor.set_option(rs.option.auto_exposure_roi_bottom, DEPTH_HEIGHT)
+    progress("INFO: Auto-exposure ROI set to the lower half of the image")
+
 def realsense_configure_setting(setting_file):
     device = find_device_that_supports_advanced_mode()
     advnc_mode = rs.rs400_advanced_mode(device)
