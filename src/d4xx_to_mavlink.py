@@ -491,14 +491,17 @@ def realsense_connect():
         progress("INFO: Auto exposure enabled")
 
     # Set the Region-of-Interest (ROI) for auto-exposure to the lower half of the image
-    sensor = profile.get_device().first_sensor()
-    roi = rs.region_of_interest()
-    roi.min_x = 0
-    roi.max_x = DEPTH_WIDTH
-    roi.min_y = DEPTH_HEIGHT // 2
-    roi.max_y = DEPTH_HEIGHT
-    sensor.set_region_of_interest(roi)
-    progress("INFO: Auto-exposure ROI set to the lower half of the image")
+    sensors = profile.get_device().query_sensors()
+    for sensor in sensors:
+        if sensor.is_depth_sensor():
+            roi = rs.region_of_interest()
+            roi.min_x = 0
+            roi.max_x = DEPTH_WIDTH
+            roi.min_y = DEPTH_HEIGHT // 2
+            roi.max_y = DEPTH_HEIGHT
+            sensor.set_region_of_interest(roi)
+            progress("INFO: Auto-exposure ROI set to the lower half of the image")
+            break
 
 def realsense_configure_setting(setting_file):
     device = find_device_that_supports_advanced_mode()
