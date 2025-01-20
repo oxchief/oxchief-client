@@ -492,10 +492,12 @@ def realsense_connect():
 
     # Set the Region-of-Interest (ROI) for auto-exposure to the lower half of the image
     sensor = profile.get_device().first_color_sensor()
-    sensor.set_option(rs.option.auto_exposure_roi_left, 0)
-    sensor.set_option(rs.option.auto_exposure_roi_right, DEPTH_WIDTH)
-    sensor.set_option(rs.option.auto_exposure_roi_top, DEPTH_HEIGHT // 2)
-    sensor.set_option(rs.option.auto_exposure_roi_bottom, DEPTH_HEIGHT)
+    roi = rs.region_of_interest()
+    roi.min_x = 0
+    roi.max_x = DEPTH_WIDTH
+    roi.min_y = DEPTH_HEIGHT // 2
+    roi.max_y = DEPTH_HEIGHT
+    sensor.set_region_of_interest(roi)
     progress("INFO: Auto-exposure ROI set to the lower half of the image")
 
 def realsense_configure_setting(setting_file):
