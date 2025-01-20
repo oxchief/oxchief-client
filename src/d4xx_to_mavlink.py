@@ -452,6 +452,13 @@ def realsense_load_settings_file(advnc_mode, setting_file):
     with open(setting_file, 'r') as file:
         json_text = file.read().strip()
 
+    # Get the current advanced mode settings as a JSON string
+    json_text = advnc_mode.get_json()
+
+    # Print the JSON string
+    print("INFO: Current D435f settings as JSON: ")
+    print(json_text)
+    
     advnc_mode.load_json(json_text)
 
 # Establish connection to the Realsense camera
