@@ -5,7 +5,7 @@ VERSION="1.0.0"
 
 # Docker image versions
 DOCKER_OX_CLIENT_VERSION="1.0.2"
-DOCKER_REALSENSE_VERSION="1.0.1"
+DOCKER_REALSENSE_VERSION="1.0.2"
 
 project_path="$(dirname "${BASH_SOURCE[0]}")/.." # this is the path to the oxchief-client directory
 # Get the path to the .oxchief authentication file in the directory below
