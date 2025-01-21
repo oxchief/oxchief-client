@@ -490,18 +490,18 @@ def realsense_connect():
         depth_sensor.set_option(rs.option.enable_auto_exposure, 1)
         progress("INFO: Auto exposure enabled")
 
-    # Set the Region-of-Interest (ROI) for auto-exposure to the lower half of the image
-    if depth_sensor.supports(rs.option.auto_exposure_roi_left) and \
-       depth_sensor.supports(rs.option.auto_exposure_roi_right) and \
-       depth_sensor.supports(rs.option.auto_exposure_roi_top) and \
-       depth_sensor.supports(rs.option.auto_exposure_roi_bottom):
-        depth_sensor.set_option(rs.option.auto_exposure_roi_left, 0)
-        depth_sensor.set_option(rs.option.auto_exposure_roi_right, DEPTH_WIDTH)
-        depth_sensor.set_option(rs.option.auto_exposure_roi_top, DEPTH_HEIGHT // 2)
-        depth_sensor.set_option(rs.option.auto_exposure_roi_bottom, DEPTH_HEIGHT)
-        progress("INFO: Auto-exposure ROI set to the lower half of the image")
-    else:
-        progress("INFO: Auto-exposure ROI options are not supported")
+    # # Set the Region-of-Interest (ROI) for auto-exposure to the lower half of the image
+    # if depth_sensor.supports(rs.option.auto_exposure_roi_left) and \
+    #    depth_sensor.supports(rs.option.auto_exposure_roi_right) and \
+    #    depth_sensor.supports(rs.option.auto_exposure_roi_top) and \
+    #    depth_sensor.supports(rs.option.auto_exposure_roi_bottom):
+    #     depth_sensor.set_option(rs.option.auto_exposure_roi_left, 0)
+    #     depth_sensor.set_option(rs.option.auto_exposure_roi_right, DEPTH_WIDTH)
+    #     depth_sensor.set_option(rs.option.auto_exposure_roi_top, DEPTH_HEIGHT // 2)
+    #     depth_sensor.set_option(rs.option.auto_exposure_roi_bottom, DEPTH_HEIGHT)
+    #     progress("INFO: Auto-exposure ROI set to the lower half of the image")
+    # else:
+    #     progress("INFO: Auto-exposure ROI options are not supported")
 
 def realsense_configure_setting(setting_file):
     device = find_device_that_supports_advanced_mode()
