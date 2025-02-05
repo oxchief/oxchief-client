@@ -902,7 +902,7 @@ class EternalProcess:
             Perform sanity checks for joystick control in manual mode.
             This method checks if the joystick is connected and 
             receiving data. If no joystick data is 
-            received for more than 1 second, 
+            received for more than {seconds} seconds, 
             the robot is put on hold.
             """
             seconds = 3.0
@@ -928,7 +928,7 @@ class EternalProcess:
                             servo1_raw = servos.servo1_raw
                             servo3_raw = servos.servo3_raw
                             
-                        if servo1_raw != 1500 and servo3_raw != 1500:
+                        if servo1_raw != robot_state.servo1_trim and servo3_raw != robot_state.servo3_trim:
                             await flight_controller.hold_keep_wp()
                             logging.error(f"No joystick data received in last {seconds} seconds. Will now put robot on HOLD.")
                             self.network.robot_log(f"No joystick data received in last {seconds} seconds. "
