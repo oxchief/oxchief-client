@@ -38,12 +38,12 @@ Here's what you're going to do:
 
 4. Add a new Base Station in [OxChief](https://oxchief.com/control/settings/).
 
-https://github.com/user-attachments/assets/f18605be-951f-4280-b393-4e3745bdee81
+![Base Station Add](images/base-station-add-sequence.gif)
 
 5. Copy the `oxchief` file to your base station at `/home/pi/src/oxchief/.oxchief`. Note that the oxchief file downloads as `oxchief`, but you will be adding a `.` to it (and thus naming it `.oxchief`).
 
-https://github.com/user-attachments/assets/e45d811a-5456-489a-b3c9-96d76ec847e6
+![Copy OxChief File to Base Station](images/copy-oxchief-file-to-base-station.gif)
 
 6. From the `/home/pi/src/oxchief/oxchief-client` directory, start the base station OxChief client via `./re.sh`.
 
-https://github.com/user-attachments/assets/56134051-b34e-4b86-b113-e03eb58f9de2
+![Base Station Start](images/base-station-start-log.gif)
