@@ -14,8 +14,7 @@ Since your mower wasn't shipped with the hardware necessary for running OxChief,
 Round up (or purchase) the following components/tools to aid in the installation:
 
 1. [OxChief Servo Mount / Linkage Assembly](https://shop.oxchief.com/products/oxchief-servo-linkage-for-bad-boy-maverick-hd)
-2. Two ["Wingxine" ASMC-04a 260 kg/cm servos](https://www.ebay.com/itm/185844642268?var=693807490074) to mount inside the servo assembly. Pro tip: grab a third servo on your order so you're not waiting on shipping <s>when</s> if you accidentally fry one.
-3. Two [servo plates](https://www.ebay.com/itm/173302672924?itmmeta=01JCKR0YYH6F1WRYG2CN8ZWK6F) for connecting the Wingxine servo to the OxChief linkage
+2. Two ["Wingxine" ASMG-MTA 350kg.cm servos/plates](https://www.aliexpress.us/item/3256805196526918.html) to mount inside the servo assembly. Pro tip: grab a third servo on your order so you're not waiting on shipping <s>when</s> if you accidentally fry one.
 4. [MT30 male pigtails](https://www.getfpv.com/amass-mt30-16awg-lipo-pigtail-w-protective-sleeve-male-3pcs.html)
 4. [MT30 female pigtails](https://www.getfpv.com/amass-mt30-16awg-lipo-pigtail-w-protective-sleeve-female-3pcs.html)
 5. Wire stripper tool like [this](https://www.amazon.com/dp/B000JNNWQ2)
@@ -57,7 +56,7 @@ We will get the servo assembly on your mower by following this script:
 ### Prepare Servos for Mounting
 Follow these steps to prepare your servos to mount inside the OxChief servo enclosures.
 
-1. Locate your two Wingxine (ASME-MRA 260kg.cm) servos.
+1. Locate your two Wingxine (ASMG-MTA 350kg.cm) servos.
 2. Note that the Wingxine servo gear case bolts may vibrate loose over time.
 ![](images/bad_boy/Wingxine-Loctite-1.jpg)
 You can avert this by adding [Loctite](https://www.amazon.com/Loctite-Heavy-Duty-Threadlocker-Single/dp/B000I1RSNS/) to the 6 screws holding the gear case togther.
@@ -90,7 +89,7 @@ You can avert this by adding [Loctite](https://www.amazon.com/Loctite-Heavy-Duty
 Now your left and right Wingxine servos are ready to mount inside the OxChief Servo enclosures.
 
 ### Mount Servos Inside Enclosures
-1. Mount the Wingxine (ASME-MRA 260kg.cm) servos in the left and right servo enclosures by securing the 4 screws through the enclosure to the base of the Wingxine servo. Apply removeable Loctite to the servo mount screws.
+1. Mount the Wingxine (ASMG-MTA 350kg.cm) servos in the left and right servo enclosures by securing the 4 screws through the enclosure to the base of the Wingxine servo. Apply removeable Loctite to the servo mount screws.
 2. Connect servo plate to servo (secure tightening bolts with removable loctite).
 3. Connect servo plate to linkage with provided bolt/washers/bushings.
 

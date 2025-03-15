@@ -24,7 +24,7 @@ Follow this guide and you will have an autonomous zero-turn mower very soon.
 
 ## Overview -- 5,000 feet
 
-### Intiutive Mowing Control
+### Intuitive Mowing Control
 Autonomous mowing should be absurdly simple. The endgame is this: you click Start and your mower mows until your yard (or 100 acre sod farm) is entirely mowed without any intervention. Of course, it takes a fair bit of engineering to get to that utopia. OxChief provides intuitive software that makes autonomus mowing this simple.
 
 ### Simple Path Planing
