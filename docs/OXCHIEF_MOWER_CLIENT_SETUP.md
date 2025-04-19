@@ -56,7 +56,7 @@ git clone https://github.com/oxchief/oxchief-client.git
 7. Start oxchief on your Raspberry Pi vi:
 ```
 cd /home/pi/src/oxchief/oxchief-client
-./re.sh
+sudo ./re.sh
 ```
 8. Log in to [OxChief](https://oxchief.com/) and verify your robot is connected and ready:
 ![OxChief Client File](images/oxchief_ui/OxChief-Control-Live.gif)
