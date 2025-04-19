@@ -18,7 +18,7 @@ In 2019 we [gave an overview](https://deepsouthrobotics.com/2019/08/23/anatomy-o
 4. Robust obstacle detection
 5. Clear detailed instructions
 
-OxChief is the product of a decade's work to solve this problem. We define a specific set of [hardware](https://shop.oxchief.com)/[software](https://oxchief.com) components for 1 specific mower platform (i.e. Bad Boy [Maverick HD](https://badboycountry.com/mowers/maverick-hd) and [Maverick](https://badboycountry.com/mowers/maverick) so that anyone running OxChief will have repeatable results.
+OxChief is the product of a decade's work to solve this problem. We define a specific set of [hardware](https://shop.oxchief.com)/[software](https://oxchief.com) components for 1 specific mower platform (i.e. Bad Boy [Maverick HD](https://badboycountry.com/mowers/maverick-hd) and [Maverick](https://badboycountry.com/mowers/maverick)) so that anyone running OxChief will have repeatable results.
 
 Follow this guide and you will have an autonomous zero-turn mower very soon.
 
