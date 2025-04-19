@@ -18,7 +18,7 @@ In 2019 we [gave an overview](https://deepsouthrobotics.com/2019/08/23/anatomy-o
 4. Robust obstacle detection
 5. Clear detailed instructions
 
-OxChief is the product of a decade's work to solve this problem. We define a specific set of [hardware](https://shop.oxchief.com)/[software](https://oxchief.com) components for [1 specific mower](https://badboycountry.com/mowers/maverick-hd) so that anyone running OxChief will have repeatable results.
+OxChief is the product of a decade's work to solve this problem. We define a specific set of [hardware](https://shop.oxchief.com)/[software](https://oxchief.com) components for 1 specific mower platform (i.e. Bad Boy [Maverick HD](https://badboycountry.com/mowers/maverick-hd) and [Maverick](https://badboycountry.com/mowers/maverick) so that anyone running OxChief will have repeatable results.
 
 Follow this guide and you will have an autonomous zero-turn mower very soon.
 
@@ -31,7 +31,7 @@ Autonomous mowing should be absurdly simple. The endgame is this: you click Star
 We should be able to easily define our mowing mission. We want to be able to run routes spanning dozens (or even hundreds) of acres without interruption. OxChief makes defining (and updating) your mower's path super easy.
 
 ### Legit Servo Solution
-We strongly believe that the factory control levers on an autonomous zero-turn mower should retain their original function. In other words, the left and right control arms should continue to control the left and right wheels as you would expect. This means that the servos used to control the robot should actuate the control arms back and forth. These servos should be robust and easily adjustable to get the steering precisely right. We're happy to offer an in-house designed & fabricated [servo mount and linkage assembly](https://shop.oxchief.com/products/oxchief-servo-linkage-for-bad-boy-maverick-hd) that's engineered specifically for your Bad Boy Maverick HD mower running OxChief.
+We strongly believe that the factory control levers on an autonomous zero-turn mower should retain their original function. In other words, the left and right control arms should continue to control the left and right wheels as you would expect. This means that the servos used to control the robot should actuate the control arms back and forth. These servos should be robust and easily adjustable to get the steering precisely right. We're happy to offer an in-house designed & fabricated [servo assembly](https://shop.oxchief.com/products/oxchief-alpha-bolt-on-servo-assembly) that's engineered specifically for your Bad Boy Maverick HD mower running OxChief.
 
 ### Robust Obstacle Detection
 Adding obstacle detection to your autonomous mower pays immediate dividends in safety and peace-of-mind. OxChief offers an in-house designed & fabricated [obstacle sensor enclosure](https://shop.oxchief.com/products/oxchief-realsense-mount-for-bad-boy-maverick-hd) built for the Intel RealSense D435f camera that's designed to mount on the front of your Maverick HD in less than 15 minutes. On the software side we provide everything you need to set the RealSense camera up as an obstacle sensor for your robot.
