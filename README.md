@@ -40,7 +40,7 @@ Adding obstacle detection to your autonomous mower pays immediate dividends in s
 Since your mower was not shipped with autopilot, we'll need to grab a few tools and connect a few wires to get it properly equipped. OxChief is obsessed with making the process of equipping your mower with autopilot as clear and straightforward as possible. 
 
 ## Getting Started
-OxChief supports 1 mower platform: the [Bad Boy Maverick HD](https://badboycountry.com/mowers/maverick-hd) 60.
+OxChief supports 1 mower platform: the Bad Boy [Maverick HD](https://badboycountry.com/mowers/maverick-hd) and [Maverick](https://badboycountry.com/mowers/maverick).
 
 More than once I've wondered if some prescient engineer at Bad Boy built the Maverick HD with a notion of creating an ideal autopilot mower platform. The Maverick HD's autopilot friendly features include:
 
@@ -61,7 +61,7 @@ Pay attention to the following, in particular:
 - the suspension seat is first-class
 - they're built like a tank
 
-We've cut thousands of acres with other brands -- the Maverick HD's cut meets or exceeds any we've seen.
+We've cut thousands of acres with other brands -- the Maverick HD's cut meets or exceeds most we've seen.
 
 Once you've secured your mower, simply follow the installation guides below to equip your mower with OxChief autopilot:
 
