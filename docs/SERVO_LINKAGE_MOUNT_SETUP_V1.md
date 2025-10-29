@@ -13,7 +13,10 @@ Since your mower wasn't shipped with the hardware necessary for running OxChief,
 ### Necessary Parts & Tools
 Round up (or purchase) the following components/tools to aid in the installation:
 
-1. [OxChief Alpha Servo Bolt-On Servo Assembly](https://shop.oxchief.com/products/oxchief-alpha-bolt-on-servo-assembly)
+1. [OxChief Servo Mount / Linkage Assembly](https://shop.oxchief.com/products/oxchief-servo-linkage-for-bad-boy-maverick-hd)
+2. Two ["Wingxine" ASMG-MTA 350kg.cm servos/plates](https://www.aliexpress.us/item/3256805196526918.html) to mount inside the servo assembly. Pro tip: grab a third servo on your order so you're not waiting on shipping <s>when</s> if you accidentally fry one.
+4. [MT30 male pigtails](https://www.getfpv.com/amass-mt30-16awg-lipo-pigtail-w-protective-sleeve-male-3pcs.html)
+4. [MT30 female pigtails](https://www.getfpv.com/amass-mt30-16awg-lipo-pigtail-w-protective-sleeve-female-3pcs.html)
 5. Wire stripper tool like [this](https://www.amazon.com/dp/B000JNNWQ2)
 6. Heat shrink solder like [this](https://www.amazon.com/dp/B0BKSJQC9Q)
 7. Heat gun like [this](https://www.amazon.com/dp/B004NDX7O6)
