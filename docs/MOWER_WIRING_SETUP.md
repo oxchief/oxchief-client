@@ -1,22 +1,24 @@
 ## Wiring the Mower for OxChief Autopilot
 
-### Necessary Parts & Tools
+### Parts List
 Round up (or purchase) the following components/tools to aid in the installation:
 
-1. 12 gauge red/black wire like [this](https://www.amazon.com/dp/B08MF7BN8H)
-2. Wire stripper tool like [this](https://www.amazon.com/dp/B000JNNWQ2)
-3. Heat shrink solder like [this](https://www.amazon.com/dp/B0BKSJQC9Q)
-3. Heat shrink ring connector/crimper tool set like [this](https://www.amazon.com/dp/B0B27L5TVM)
-4. XT60 connectors like [these](https://www.amazon.com/dp/B0B4H5CCR3). Order twice as many as you think you'll need. The longer pigtails like [these](https://www.amazon.com/dp/B07C5J43ZL) are quite nice for heat-shrink soldering. You may even want to spring for an extra bag of cheaper 14AWG wires like [these](https://www.ebay.com/itm/313849355086) to have laying around.
-5. XT60 splitters like [these](https://www.amazon.com/dp/B0754JKHWW). Of course you can make your own with the massive load of XT60 connectors you purchased above.
-5. [12v-to-5v-5amp-USB-C step-down converter](https://www.amazon.com/dp/B0CRVW7N2J) for powering the Raspberry Pi. Of course you'll want to solder on a XT60 pigtail to make it pluggable.
-6. Two 12v 40a [relays](https://www.amazon.com/dp/B078T8CMF6)
-7. Two on/off toggle switches like [these](https://www.amazon.com/dp/B07WW3WW3F)
-8. Cube [power cable](https://www.getfpv.com/holybro-pixhawk-pm02-v3-12s-power-module.html) (if not included with your Cube Orange flight controller)
-9. 22 awg wire like [this](https://www.amazon.com/dp/B07TX6BX47)
-10. 12v-to-24v 20A Step Up Converter like [this](https://www.amazon.com/dp/B081K6PRX3)
-11. 10 AWG inline ATC fuse holder with 40 AMP fuse (like [this](https://www.amazon.com/dp/B0BRPW9KJ5)) for main power from the battery +.
-12. Heat gun like [this](https://www.amazon.com/dp/B004NDX7O6)
+| # | Part | Notes |
+|---:|---|---|
+| 1 | [12 AWG red/black wire](https://www.amazon.com/dp/B08MF7BN8H) | Main power lines for battery + - . |
+| 2 | [Wire stripper tool](https://www.amazon.com/dp/B000JNNWQ2) | Wire insulation removal for terminations. |
+| 3 | [Heat-shrink solder](https://www.amazon.com/dp/B0BKSJQC9Q) | For robust, insulated splices. |
+| 4 | [Heat-shrink ring connector / crimper tool set](https://www.amazon.com/dp/B0B27L5TVM) | Crimp and seal ring terminals for battery/relay connections. |
+| 5 | [XT60 connectors](https://www.amazon.com/dp/B0B4H5CCR3) | Power connectors — order extra; longer pigtails (e.g. https://www.amazon.com/dp/B07C5J43ZL) are useful. |
+| 6 | [XT60 splitters](https://www.amazon.com/dp/B0754JKHWW) | For splitting a single XT60 feed to multiple devices (or make your own). |
+| 7 | [12V → 5V 5A USB-C step-down converter](https://www.amazon.com/dp/B0CRVW7N2J) | Power Raspberry Pi; solder on XT60 pigtail for easy connect/disconnect. |
+| 8 | [12V 40A relays (qty 2)](https://www.amazon.com/dp/B078T8CMF6) | Relay the main electronics power and optional step-up converter. |
+| 9 | [On/off toggle switches (qty 2)](https://www.amazon.com/dp/B01IYKSLCG/) | Manual control for relays (main and step-up). |
+| 10 | [Cube power cable / power module](https://holybro.com/products/pm02-v3-12s-power-module) | If not included with your Cube Orange. |
+| 11 | [22 AWG wire](https://www.amazon.com/dp/B07TX6BX47) | Signal wiring (telemetry, switches, etc.). |
+| 12 | [10 AWG inline ATC fuse holder + 40A fuse](https://www.amazon.com/dp/B0BRPW9KJ5) | Main battery fuse — bolt to battery + terminal. |
+| 13 | [Heat gun](https://www.amazon.com/dp/B004NDX7O6) | For heat-shrink application. |
+
 
 ### Setting up for Robotics Glory
 
