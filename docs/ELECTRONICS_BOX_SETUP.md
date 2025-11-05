@@ -3,37 +3,36 @@
 We will now build the entire autopilot electronics box.
 
 
-### Necessary Parts & Tools
+### Parts List
 
-Round up the following components/tools to aid in the installation:
+Round up the following parts:
 
-1. [Raspberry Pi 5](https://www.ebay.com/itm/116326708617) running [Raspberry Pi OS (64-bit) Debian 12 (bookworm)](https://www.raspberrypi.com/software/operating-systems/). Pro tip: purchase your Pi from Fun and Tech (eBay store linked) with a sweet external antenna mod.
-2. [Flight Controller](https://irlock.com/products/cube-orange-plus-standard-set) -- Cube Orange officially supported
-3. [OxChief Autopilot Adapter Set](https://shop.oxchief.com/products/oxchief-raspberry-pi-to-cube-autopilot-adapter-set) -- OxChief will use these adapters for communicating between the Raspberry Pi and the Cube autopilot.
-4. [SD card for Pi](https://www.amazon.com/dp/B09WB1857W/) -- [endurance card](https://www.reddit.com/r/raspberry_pi/comments/xnkp71/reliability_of_microsd_endurance_cards_compared_w/) such as Samsung Pro Endurance 128 GB suggested
-5. [High precision GNSS (i.e. "GPS") receiver and antenna](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/) -- u-blox ZED-F9P officially supported. Go for the ArduSimple module unless you have a compelling reason not to.
-6. RM3100 external compass (available [here](https://www.getfpv.com/mateksys-ap-periph-can-magnetometer-rm3100.html) or [here](https://www.readymaderc.com/products/details/matek-ap-periph-can-magnetometer-rm3100))
-
-7. [Enclosure](https://www.mouser.com/ProductDetail/Bud-Industries/AN-2823-A?qs=9qK3lZr%252bi0IAMON5kROY8A%3D%3D&utm_source=eciaauthorized&utm_medium=aggregator&utm_campaign=AN-2823-A&utm_term=AN-2823-A&utm_content=Bud-Industries) and [mounting plate](https://www.mouser.com/ProductDetail/Bud-Industries/ANX-91323?qs=hFSnKGZfZOZx7rEIKm0bLw%3D%3D&srsltid=AfmBOoqlWkqIRY1h3ukVxc1DUnCHEwVaUu-2IeonACblg8pWwADdTx2T) for electronics box on mower. If tempted to go with a cheap plastic enclsoure, keep in mind that aluminum dissipates heat much more effectively.
-
-8. [4-to-1 USB Hub](https://www.amazon.com/dp/B00XMD7KPU) for extra USB devices you'll be connecting to the Raspberry Pi
-9. [Heat-shrink solder](https://www.amazon.com/s?k=heat+shrink+solder) connections
-10. Rubber grommets like [these](https://www.amazon.com/dp/B0B5VYYSCM/)
-11. [Velcro squares](https://www.amazon.com/dp/B099RXQYFK)
-12. 90 degree conduit connector like [this](https://www.amazon.com/dp/B09NNDG19Z) (may want to purchase the kit as you'll need conduit/straight adapter later)
-13. Nylon standoffs like [these](https://www.amazon.com/dp/B0BN8RP7N8/)
-14. [RealSense D435f](https://www.intelrealsense.com/depth-camera-d435f/)
-15. 1 1/16" hole cutting [saw](https://www.amazon.com/dp/B08H78DQQ8/) or [bit](https://www.amazon.com/dp/B00AYZ3396/)
-16. [Stepped drill bit](https://www.amazon.com/s?k=1+3%2F8+titanium+drill+bit+stepped)
-17. [12v DC to USB-C](https://www.amazon.com/dp/B0CRVVWL4Y/) for Pi power
-18. XT60 connectors like [these](https://www.amazon.com/dp/B0B4H5CCR3)
-19. Heat shrink solder like [this](https://www.amazon.com/dp/B0BKSJQC9Q)
-20. Drill
-21. Electrical tape
-22. (Optional) [Cutting fluid](https://www.amazon.com/dp/B00065VEP4/)
-23. (Optional) [Pi Active Cooler](https://www.amazon.com/dp/B0CLXZBR5P/)
-24. (Optional) [12v XT60 power supply](https://www.amazon.com/s?k=12v+xt60+power+supply)
-25. (Optional) [XT60 splitter](https://www.amazon.com/s?k=xt60+splitter)
+| # | Part | Description / Notes |
+|---:|---|---|
+| 1 | [Raspberry Pi 5](https://www.ebay.com/itm/116326708617) | Raspberry Pi OS (64-bit). The linked part is from Fun and Tech (eBay) with external antenna mod. |
+| 2 | [Flight Controller — Cube Orange](https://irlock.com/products/cube-orange-plus-standard-set) | Officially supported. |
+| 3 | [OxChief Autopilot Adapter Set](https://shop.oxchief.com/products/oxchief-raspberry-pi-to-cube-autopilot-adapter-set) | Adapter for Pi ↔ Cube communication. |
+| 4 | [SD card for Pi — Samsung Pro Endurance 128GB](https://www.amazon.com/dp/B09WB1857W/) | Endurance microSD recommended. |
+| 5 | [ArduSimple SimpleRTK2B starter kit (u-blox ZED-F9P)](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/) | GNSS receiver & antenna, supported. |
+| 6 | [RM3100 magnetometer](https://www.getfpv.com/mateksys-ap-periph-can-magnetometer-rm3100.html) | External compass (also available at [ReadyMadeRC](https://www.readymaderc.com/products/details/matek-ap-periph-can-magnetometer-rm3100)). |
+| 7 | [Aluminum enclosure — Bud AN-2823-A](https://www.mouser.com/ProductDetail/Bud-Industries/AN-2823-A?qs=9qK3lZr%252bi0IAMON5kROY8A%3D%3D) and [mounting plate — Bud ANX-91323](https://www.mouser.com/ProductDetail/Bud-Industries/ANX-91323?qs=hFSnKGZfZOZx7rEIKm0bLw%3D%3D) | Aluminum recommended for heat dissipation. |
+| 8 | [4-to-1 USB Hub](https://www.amazon.com/dp/B00XMD7KPU) | For extra devices. |
+| 9 | [Heat-shrink solder](https://www.amazon.com/dp/B0BKSJQC9Q) | Heat-shrink solder connections. |
+| 10 | [Rubber grommets](https://www.amazon.com/dp/B0B5VYYSCM/) | Protect cable entries. |
+| 11 | [Velcro squares](https://www.amazon.com/dp/B099RXQYFK) | Mounting/padding. |
+| 12 | [Conduit & connectors](https://www.amazon.com/dp/B09NNDG19Z) | Liquid-tight connection from main electronics box to obstacle sensor box. |
+| 13 | [Nylon standoffs](https://www.amazon.com/dp/B0BN8RP7N8/) | For mounting PCBs. |
+| 14 | [Intel RealSense D435f](https://store.realsenseai.com/buy-intel-realsense-depth-camera-d435f.html) | Depth camera. |
+| 15 | [1 1/16" hole saw / bit](https://www.amazon.com/dp/B08H78DQQ8/) | For conduit connector. |
+| 16 | [Stepped drill bit](https://www.amazon.com/s?k=1+3%2F8+titanium+drill+bit+stepped) | For cable holes. |
+| 17 | [12V → USB-C converter](https://www.amazon.com/dp/B0CRVVWL4Y/) | Power Raspberry Pi. |
+| 18 | [XT60 connectors](https://www.amazon.com/dp/B0B4H5CCR3) | Power connectors. |
+| 19 | [Cutting fluid (optional)](https://www.amazon.com/dp/B00065VEP4/) | Helps when drilling metals. |
+| 20 | [Pi active cooler (optional)](https://www.amazon.com/dp/B0CLXZBR5P/) | For Raspberry Pi thermal management. |
+| 21 | [12V XT60 power supply (optional)](https://www.amazon.com/s?k=12v+xt60+power+supply) | Packaged supply. |
+| 22 | [XT60 splitter (optional)](https://www.amazon.com/s?k=xt60+splitter) | For powering multiple XT60 devices. |
+| 23 | [Electrical tape](https://www.amazon.com/dp/B001AXD0EY/) | General wiring protection. |
+| 24 | Drill | General tooling. |
 
 
 ### Prepare Box
