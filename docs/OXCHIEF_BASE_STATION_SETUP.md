@@ -12,14 +12,16 @@ With OxChief, you can easliy set up your own rock-solid base station.
 
 Here's how:
 
-### Necessary Parts & Tools
+### Parts List
 Round up the following components/tools to aid in the installation:
 
-1. Raspberry Pi [5](https://www.raspberrypi.com/products/raspberry-pi-5/) 
-2. Pi [power supply](https://www.raspberrypi.com/products/27w-power-supply/)
-3. [High precision GNSS receiver](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/) 
-4. USB cable connecting raspberry pi to ZED-F9P
-5. ZED-F9P Antenna
+| # | Part | Notes |
+|---:|---|---|
+| 1 | [Raspberry Pi 5](https://www.raspberrypi.com/products/raspberry-pi-5/) | Single-board computer for the base station (Pi 5 recommended). |
+| 2 | [Raspberry Pi power supply (27W)](https://www.raspberrypi.com/products/27w-power-supply/) | Official PSU to reliably power the Pi. |
+| 3 | [ArduSimple SimpleRTK2B (u-blox ZED-F9P)](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/) | High-precision GNSS receiver & antenna kit for RTK corrections. |
+| 4 | USB cable connecting Raspberry Pi to ZED-F9P | Use an appropriate cable for your receiver (USB-A → USB-C or USB-A → Micro-B depending on module). |
+
 
 ### Hardware
 1. Connect the Raspberry Pi 4/5 to the u-blox ZED-F9P receiver via USB cable

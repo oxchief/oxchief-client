@@ -12,8 +12,7 @@ Round up (or purchase) the following components/tools to aid in the installation
 | 5 | [XT60 connectors](https://www.amazon.com/dp/B0B4H5CCR3) | Power connectors — order extra; longer pigtails (e.g. https://www.amazon.com/dp/B07C5J43ZL) are useful. |
 | 6 | [XT60 splitters](https://www.amazon.com/dp/B0754JKHWW) | For splitting a single XT60 feed to multiple devices (or make your own). |
 | 7 | [12V → 5V 5A USB-C step-down converter](https://www.amazon.com/dp/B0CRVW7N2J) | Power Raspberry Pi; solder on XT60 pigtail for easy connect/disconnect. |
-| 8 | [12V 40A relays (qty 2)](https://www.amazon.com/dp/B078T8CMF6) | Relay the main electronics power and optional step-up converter. |
-| 9 | [On/off toggle switches (qty 2)](https://www.amazon.com/dp/B01IYKSLCG/) | Manual control for relays (main and step-up). |
+| 9 | [On/off toggle switch](https://www.amazon.com/dp/B01IYKSLCG/) | Power control for main electronics box.|
 | 10 | [Cube power cable / power module](https://holybro.com/products/pm02-v3-12s-power-module) | If not included with your Cube Orange. |
 | 11 | [22 AWG wire](https://www.amazon.com/dp/B07TX6BX47) | Signal wiring (telemetry, switches, etc.). |
 | 12 | [10 AWG inline ATC fuse holder + 40A fuse](https://www.amazon.com/dp/B0BRPW9KJ5) | Main battery fuse — bolt to battery + terminal. |
@@ -28,14 +27,13 @@ You may observe that we make liberal use of XT60 connectors in our installation.
 
 Follow these steps to get rolling:
 
-1. Loosen the bolts holding the fuel selector valve. We will move the mounting location of this valve approximately X inches to the right. This makes room for the battery's new installation location.
+1. Loosen the bolts holding the fuel selector valve. We will move the mounting location of this valve approximately 4 inches to the right. This makes room for the battery's new installation location.
 2. Move the battery (beneath the seat) from it's original location in front of the metal crossmember bar/seat spring mount to behind the crossmember bar. We will install the autopilot electronics box in the original battery location.
 2. Crimp a ring connector to one end of the inline fuse. This ring should be big enough to bolt the fuse onto the positive battery terminal. 
 2. Use heat-shrink solder to connect an approximately 24" section of 12 gauge red cable to the other end of the inline fuse / ring connector. The entire fused cable should be long enough to comfortably reach from the positive battery terminal over to the 2 relays we will install on the right side of the mower.
 2. Use heat-shrink solder to connect the inline fuse cable (created above) to the battery (+) VCC wires on the two relays. To be clear, we want the battery (+) wire on both of these relays wound together and then heat-shrink soldered to the fused power cable.
-3. Locate a panel for mounting the 12v-24v power converter and the two relays. The ideal panel is Bad Boy part # 201-0020-00. If possible (this part's availablity is sketchy), you want to purchase this panel and install it on the right side of the mower, benath the right-hand fuel tank cap, bolted to the mower using the two ROPS bar support bolts on the right side of the mower. Note in the pics we just used a random plastic panel laying around the shop.
-4. Attach the 12v-to-24v step-up power converter to the panel from above. You will use this 24v supply to power the Wingxine servos. We recommend soldering XT60 connectors to both the 12v supply side and the 24v output side of the step-up power converter.
-5. Bolt two relays on the panel.
+
+
 6. (Optional) Tap in a ground bolt to the metal pan beneath the relay plate to keep your ground wires short and clean. To be clear, we just drill a hole and tap the hole with threads -- then we attach the new ground wires to this bolt.
 6. Install an on-off toggle switch for the main electronics box relay. We like to install this switch behind the seat. Run a ground wire through this switch up to one of the relays you installed on the panel.
 6. Test that the 12v main electronics box relay works as expected. Should read 12v when switch is on, nothing when switched off.
