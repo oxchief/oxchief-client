@@ -10,7 +10,7 @@ One day very soon, barring acts of God, or other unexpeted world craziness, near
 
 Since your mower wasn't shipped with the hardware necessary for running OxChief, we're going to add it ourselves. The most significant lift is the procedure we detail on this page: adding mechanical control to our mower. Follow the steps outlined below to equip your Bad Boy Maverick HD with the OxChief servo assembly.
 
-### Necessary Parts & Tools
+### Parts List
 Round up (or purchase) the following components/tools to aid in the installation:
 
 1. [OxChief Alpha Servo Bolt-On Servo Assembly](https://shop.oxchief.com/products/oxchief-alpha-bolt-on-servo-assembly)

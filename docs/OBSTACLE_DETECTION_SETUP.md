@@ -1,8 +1,6 @@
 ## OxChief Obstacle Detection Setup
 
-
 ### Parts List
-Round up the following components/tools to aid in the installation:
 
 | # | Part | Notes |
 |---:|---|---|

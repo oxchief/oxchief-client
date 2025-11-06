@@ -1,7 +1,6 @@
-## Wiring the Mower for OxChief Autopilot
+## OxChief Mower Wiring Setup
 
 ### Parts List
-Round up (or purchase) the following components/tools to aid in the installation:
 
 | # | Part | Notes |
 |---:|---|---|

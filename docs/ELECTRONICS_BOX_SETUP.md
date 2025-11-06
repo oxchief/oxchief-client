@@ -1,11 +1,7 @@
-## Hardware -- Electronics Box Setup
-
-We will now build the entire autopilot electronics box.
-
+## OxChief Electronics Box Setup
 
 ### Parts List
 
-Round up the following parts:
 
 | # | Part | Description / Notes |
 |---:|---|---|
@@ -34,8 +30,10 @@ Round up the following parts:
 | 23 | [Electrical tape](https://www.amazon.com/dp/B001AXD0EY/) | General wiring protection. |
 | 24 | Drill | General tooling. |
 
-
 ### Prepare Box
+
+We will now build the entire autopilot electronics box.
+
 We need to drill 3 holes into the short sides of the electronics box.
 
 - Start with your empty electronics enclosure
