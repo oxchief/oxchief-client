@@ -23,7 +23,7 @@
 ### Watch: Installation Video
 Check out the video for detailed instructions. The video is specifically for the OxChief R/C system, but the servo mounting process is the same.
 
-Watch the servo linkage install video
+[![Watch the servo linkage install video](https://img.youtube.com/vi/iwFl5_PJkDQ/hqdefault.jpg)](https://www.youtube.com/watch?v=iwFl5_PJkDQ)
 
 Or view on YouTube: https://www.youtube.com/watch?v=iwFl5_PJkDQ
 
