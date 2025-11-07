@@ -2,7 +2,6 @@
 
 ### Parts List
 
-
 | # | Part | Description / Notes |
 |---:|---|---|
 | 1 | [Raspberry Pi 5](https://www.ebay.com/itm/116326708617) | Raspberry Pi OS (64-bit). The linked part is from Fun and Tech (eBay) with external antenna mod. |

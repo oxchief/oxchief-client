@@ -11,7 +11,6 @@ One day very soon, barring acts of God, or other unexpeted world craziness, near
 Since your mower wasn't shipped with the hardware necessary for running OxChief, we're going to add it ourselves. The most significant lift is the procedure we detail on this page: adding mechanical control to our mower. Follow the steps outlined below to equip your Bad Boy Maverick HD with the OxChief servo assembly.
 
 ### Parts List
-Round up (or purchase) the following components/tools to aid in the installation:
 
 1. [OxChief Alpha Servo Bolt-On Servo Assembly](https://shop.oxchief.com/products/oxchief-alpha-bolt-on-servo-assembly)
 5. Wire stripper tool like [this](https://www.amazon.com/dp/B000JNNWQ2)
@@ -30,6 +29,14 @@ Round up (or purchase) the following components/tools to aid in the installation
 13. 10mm wrench for removing carbon canister
 13. Drill / drill bit for drilling the servo assembly mounting holes
 
+### Watch: Installation Video
+
+Check out the video for detailed instructions. The video is specifically for the OxChief R/C system, but the servo mounting process is the same.
+
+[![Watch the servo linkage install video](https://img.youtube.com/vi/iwFl5_PJkDQ/hqdefault.jpg)](https://www.youtube.com/watch?v=iwFl5_PJkDQ)
+
+Or view on YouTube: https://www.youtube.com/watch?v=iwFl5_PJkDQ
+
 ### Terminology
 
 For the purpose of our discussion, let's designate "left" and "right" servos to be on the left and right sides of the mower as you sit on the mower. In other words, when you sit on the mower's seat and your left hand rests on a control lever, we're going to call that lever the left lever. Accordingly, the servo that we will attach to that lever is the left servo.
@@ -42,53 +49,6 @@ We're adding mechanical control to your Maverick HD.
 ![](images/bad_boy/Servo-Mount-Installed.jpg)
 
 Note that the "Maverick HD" name plate is removed above so you can see where we'll install the OxChief servo assembly beneath the seat.
-
-We will get the servo assembly on your mower by following this script:
-
-1. Prepare the servo assembly for mounting
-2. Prepare the mower for the servo assembly
-3. Mount the servo assembly on the mower
-4. Dial-in a solid tune on the servos
-
-### Prepare Servos for Mounting
-Follow these steps to prepare your servos to mount inside the OxChief servo enclosures.
-
-1. Locate your two Wingxine (ASMG-MTA 350kg.cm) servos.
-2. Note that the Wingxine servo gear case bolts may vibrate loose over time.
-![](images/bad_boy/Wingxine-Loctite-1.jpg)
-You can avert this by adding [Loctite](https://www.amazon.com/Loctite-Heavy-Duty-Threadlocker-Single/dp/B000I1RSNS/) to the 6 screws holding the gear case togther.
-![](images/bad_boy/Wingxine-Loctite-2.jpg)
-3. Observe the [forward / reverse direction jumper](images/wingxine-f-r-jumper.jpg) on the servo.
-4. Leave the jumper on the left servo.
-![](images/bad_boy/Left-Servo-Reverse-Jumper.jpg)
-5. Remove the jumper from the right servo. ![](images/bad_boy/Right-Servo.jpg)
-6. You may notice that in the pics above we've already created the servo wiring harness:
-![](images/bad_boy/Wingxine-Servo-Harness.jpg)
-6. Let's build the harness. Locate the following:
-    - 2 MT30 female pigtails (3-wire pigtails are ideal for this application.)
-    - 14 AWG red/black wire (for soldering ~5 additional inches to the the MT30 pigtails)
-    - 2 female breadboard wires (to connect to the Signal "S" pin on the servo)
-    - Heat-shrink connectors
-    - Heat gun
-    - Wire stripper tool
-    - Zip ties
-    - Electronic grade silicone
-7. Extend the length of the MT30 pigtails by heat-shrink soldering on a ~5 inch 14 AWG red/black section. The additional length we're adding allows the MT30 connector to extend outside of the servo enclosure for easy connection.
-8. Heat-shrink solder a female breadboard wire onto the blue MT30 wire. Note in the picture above that this signal wire should extend ~3 inches beyond the end of the red/black power wires. The extra lenth of the female signal wire will allow the harness to connect comfortably to the Wingxine servo.
-8. Connect the harness to Wingxine servo control board as shown above:
-    - Connect the +- red/black wires to the terminal block. 
-    - Connect the breadboard wire to the S (Signal) pin on the control board. 
-    - Zip tie the wires together so that the signal wire isn't torqued if the wiring harness is tugged
-    - Dab some electronic grade silicone over the pins on this board to secure.
-
-![](images/bad_boy/Wingxine-Electronic-Grade-Silicone-1.jpg)
-
-Now your left and right Wingxine servos are ready to mount inside the OxChief Servo enclosures.
-
-### Mount Servos Inside Enclosures
-1. Mount the Wingxine (ASMG-MTA 350kg.cm) servos in the left and right servo enclosures by securing the 4 screws through the enclosure to the base of the Wingxine servo. Apply removeable Loctite to the servo mount screws.
-2. Connect servo plate to servo (secure tightening bolts with removable loctite).
-3. Connect servo plate to linkage with provided bolt/washers/bushings.
 
 ### Mount Servo Assembly on Your Mower
 Follow these steps to mount the OxChief servo assembly on your mower:
@@ -105,14 +65,7 @@ Follow these steps to mount the OxChief servo assembly on your mower:
 ![](images/bad_boy/Maverick-HD-Plate-Removal.jpg)
 2. Remove the black cylindrical carbon canister that's mounted underneath the seat by unscrewing the 2 bolts that mount it to the mower. Do not unplug the hoses on the carbon canister -- just set it to the side for now. Later on, we will relocate this canister to the metal plate on the OxChief servo assembly between the servo enclosures.
 ![](images/bad_boy/Carbon-Canister.jpg)
-3. Locate the 4 mounting bolts, nuts, and washers that you will bolt the assembly to the mower with.
-4. On the OxChief servo assembly's mounting plate, note the 4 holes that you will need to drill through.
-5. Move the OxChief servo assembly to it's final destination under the mower seat. Center the servo assembly and mark the location of the first hole to drill through. Drill the first hole. Run a bolt through the first hole and secure the assembly to the mower with the first bolt. 
-6. Drill the next hole and run a bolt through that hole, securing the assembly to the mower.
-7. Repeat this process, drilling the 3rd and 4th mounting holes, and running a bolt through the assembly and mower, and securing with a nut/washer.
-8. Now the assembly base is mounted to the mower, and you are ready to mount the left and right servos onto the assembly base.
-9. Bolt the left servo enclosure to it's mounting location on the servo base with 2 bolts/nuts.
-10. Bolt the right servo enclosure to it's mounting location on the servo base with 2 bolts/nuts.
+3. Set the servo mount in place, centering it on the servo mounting lip beneath the seat.
 
 Now the servo assembly is mounted on your mower and you are ready to connect the servo linkage to your mower.
 

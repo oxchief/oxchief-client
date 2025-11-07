@@ -4,10 +4,11 @@
 
 | # | Part | Notes |
 |---:|---|---|
-| 1 | [12 AWG red/black wire](https://www.amazon.com/dp/B08MF7BN8H) | Main power lines for battery + - . |
-| 2 | [Wire stripper tool](https://www.amazon.com/dp/B000JNNWQ2) | Wire insulation removal for terminations. |
-| 3 | [Heat-shrink solder](https://www.amazon.com/dp/B0BKSJQC9Q) | For robust, insulated splices. |
-| 4 | [Heat-shrink ring connector / crimper tool set](https://www.amazon.com/dp/B0B27L5TVM) | Crimp and seal ring terminals for battery/relay connections. |
+| 1 | [OxChief Alpha Servo Bolt-On Servo Assembly](https://shop.oxchief.com/products/oxchief-alpha-bolt-on-servo-assembly) | Plug+play servo assembly for mower |
+| 2 | [12 AWG red/black wire](https://www.amazon.com/dp/B08MF7BN8H) | Main power lines for battery + - . |
+| 3 | [Wire stripper tool](https://www.amazon.com/dp/B000JNNWQ2) | Wire insulation removal for terminations. |
+| 4 | [Heat-shrink solder](https://www.amazon.com/dp/B0BKSJQC9Q) | For robust, insulated splices. |
+| 5 | [Heat-shrink ring connector / crimper tool set](https://www.amazon.com/dp/B0B27L5TVM) | Crimp and seal ring terminals for battery/relay connections. |
 | 5 | [XT60 connectors](https://www.amazon.com/dp/B0B4H5CCR3) | Power connectors — order extra; longer pigtails (e.g. https://www.amazon.com/dp/B07C5J43ZL) are useful. |
 | 6 | [XT60 splitters](https://www.amazon.com/dp/B0754JKHWW) | For splitting a single XT60 feed to multiple devices (or make your own). |
 | 7 | [12V → 5V 5A USB-C step-down converter](https://www.amazon.com/dp/B0CRVW7N2J) | Power Raspberry Pi; solder on XT60 pigtail for easy connect/disconnect. |
@@ -17,6 +18,14 @@
 | 12 | [10 AWG inline ATC fuse holder + 40A fuse](https://www.amazon.com/dp/B0BRPW9KJ5) | Main battery fuse — bolt to battery + terminal. |
 | 13 | [Heat gun](https://www.amazon.com/dp/B004NDX7O6) | For heat-shrink application. |
 
+
+
+### Watch: Installation Video
+Check out the video for detailed instructions. The video is specifically for the OxChief R/C system, but the servo mounting process is the same.
+
+Watch the servo linkage install video
+
+Or view on YouTube: https://www.youtube.com/watch?v=iwFl5_PJkDQ
 
 ### Setting up for Robotics Glory
 
@@ -32,14 +41,8 @@ Follow these steps to get rolling:
 2. Use heat-shrink solder to connect an approximately 24" section of 12 gauge red cable to the other end of the inline fuse / ring connector. The entire fused cable should be long enough to comfortably reach from the positive battery terminal over to the 2 relays we will install on the right side of the mower.
 2. Use heat-shrink solder to connect the inline fuse cable (created above) to the battery (+) VCC wires on the two relays. To be clear, we want the battery (+) wire on both of these relays wound together and then heat-shrink soldered to the fused power cable.
 
-
 6. (Optional) Tap in a ground bolt to the metal pan beneath the relay plate to keep your ground wires short and clean. To be clear, we just drill a hole and tap the hole with threads -- then we attach the new ground wires to this bolt.
-6. Install an on-off toggle switch for the main electronics box relay. We like to install this switch behind the seat. Run a ground wire through this switch up to one of the relays you installed on the panel.
-6. Test that the 12v main electronics box relay works as expected. Should read 12v when switch is on, nothing when switched off.
-7. Install another on-off switch for the 12-24v step-up converter relay. We like to install this switch on the main Bad Boy control panel. Run a ground wire through this switch up to the other relay you installed on the panel.
-7. Test that the 12-24v step-up converter relay relay works as expected. Should read 12v when switch is on, nothing when switched off.
-7. Connect the 12v power out from the 12-24v step-up converter relay to the 12-24v step-up converter.
-7. Test that the 12-24v step-up converter works as expected. Should read 24v when switch is on, nothing when switched off.
+6. Install an on-off toggle switch for the main electronics box power. We like to install this switch behind the seat.
 8. Make a 12 AWG red/black power line with XT60 ends (of course) long enough to neatly run from the 12v main electronics relay into the electronics box. Connect this wire to the main electronics relay.
 8. Make a 12 AWG red/black power line with XT60 ends long enough to neatly run from the 12-24v step-up converter relay up to the Wingxine servos.
 8. Install a XT60 splitter on the Wingxine servo end of the 12-24v step-up converter power line. You're probably going to want to be careful to ensure that you've got 24v positive and negative on red and black (per convention) wires up at the servo box BEFORE connecting these wires to the servos. The Wingxine servos are explicility non-tolerant of reverse polarity errors.

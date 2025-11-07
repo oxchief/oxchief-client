@@ -9,7 +9,7 @@ Everyone should own at least one autonomous zero-turn mower. OxChief's mission i
 
 ## Overview -- 50,000 feet
 
-In 2015 when we began working on the Autonomous Mowing problem, when you mentioned that one day every mower would have autopilot, you were usually met with skepticism. Nearly 10 years later, little skepticism remains, but often an opposite reaction: "what has taken so long?"
+In 2015 when we began working on the autonomous mowing problem, when you mentioned that one day every mower would have autopilot, you were usually met with skepticism. A decade later, little skepticism remains, but often an opposite reaction: "what has taken so long?"
 
 In 2019 we [gave an overview](https://deepsouthrobotics.com/2019/08/23/anatomy-of-a-huge-self-driving-mower/) of how to install an autopilot on a commercial zero-turn mower. After writing the article, it was clear that there were still too many hurdles to quickly get autopilot on a mower. These include:
 1. Intuitive mowing control
@@ -18,7 +18,7 @@ In 2019 we [gave an overview](https://deepsouthrobotics.com/2019/08/23/anatomy-o
 4. Robust obstacle detection
 5. Clear detailed instructions
 
-OxChief is the product of a decade's work to solve this problem. We define a specific set of [hardware](https://shop.oxchief.com)/[software](https://oxchief.com) components for 1 specific mower platform (i.e. Bad Boy [Maverick HD](https://badboycountry.com/mowers/maverick-hd) and [Maverick](https://badboycountry.com/mowers/maverick)) so that anyone running OxChief will have repeatable results.
+OxChief is the product of a decade's work to solve this problem. We define a specific set of [hardware](https://shop.oxchief.com)/[software](https://oxchief.com) components for a limited set of mowers (i.e. Bad Boy [Maverick HD](https://badboycountry.com/mowers/maverick-hd) and [Maverick](https://badboycountry.com/mowers/maverick)) so that anyone running OxChief will have repeatable results.
 
 Follow this guide and you will have an autonomous zero-turn mower very soon.
 
@@ -66,12 +66,11 @@ We've cut thousands of acres with other brands -- the Maverick HD's cut meets or
 Once you've secured your mower, simply follow the installation guides below to equip your mower with OxChief autopilot:
 
 1. Follow the [Electronics Box Setup](docs/ELECTRONICS_BOX_SETUP.md) guide to build your main autopilot electronics box.
-2. Follow the [Mower Wiring Setup](docs/MOWER_WIRING_SETUP.md) to prep/wire up your mower for autopilot.
-3. Follow the [OxChief Servo Assembly Installation](docs/SERVO_LINKAGE_MOUNT_SETUP.md) guide to mount the servos on your mower.
-4. Follow the [Obstacle Detection Setup](docs/OBSTACLE_DETECTION_SETUP.md) guide to add obstacle detection to your mower.
-5. Follow the [OxChief Mower Client Setup](docs/OXCHIEF_MOWER_CLIENT_SETUP.md) guide to set up the OxChief client on your mower.
-6. Follow the [OxChief Base Station Setup](docs/OXCHIEF_BASE_STATION_SETUP.md) guide to set up your GNSS base station.
-7. Follow the [OxChief Mowing Planner](docs/OXCHIEF_MOWING_PLANNER.md) guide to set up your first mowing plan.
+2. Follow the [Mower Hardware Setup](docs/MOWER_HARDWARE_SETUP.md) to prep/wire up your mower for autopilot.
+3. Follow the [Obstacle Detection Setup](docs/OBSTACLE_DETECTION_SETUP.md) guide to add obstacle detection to your mower.
+4. Follow the [OxChief Mower Client Setup](docs/OXCHIEF_MOWER_CLIENT_SETUP.md) guide to set up the OxChief client on your mower.
+5. Follow the [OxChief Base Station Setup](docs/OXCHIEF_BASE_STATION_SETUP.md) guide to set up your GNSS base station.
+6. Follow the [OxChief Mowing Planner](docs/OXCHIEF_MOWING_PLANNER.md) guide to set up your first mowing plan.
 
 Review the [OxChief Features](docs/OXCHIEF_FEATURES.md) guide for an overview of the OxChief UI's features.
 
