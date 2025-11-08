@@ -4,7 +4,7 @@
 
 | # | Part | Notes |
 |---:|---|---|
-| 1 | [OxChief Alpha Servo Bolt-On Servo Assembly](https://shop.oxchief.com/products/oxchief-alpha-bolt-on-servo-assembly) | Plug+play servo assembly for mower |
+| 1 | [OxChief Alpha Servo Bolt-On Servo Assembly](https://shop.oxchief.com/products/oxchief-alpha-bolt-on-servo-assembly) | Plug+play servo assembly for mower. |
 | 2 | [12 AWG red/black wire](https://www.amazon.com/dp/B08MF7BN8H) | Main power lines for battery + - . |
 | 3 | [Wire stripper tool](https://www.amazon.com/dp/B000JNNWQ2) | Wire insulation removal for terminations. |
 | 4 | [Heat-shrink solder](https://www.amazon.com/dp/B0BKSJQC9Q) | For robust, insulated splices. |
@@ -25,7 +25,7 @@ Check out the video for detailed instructions. The video is specifically for the
 
 [![Watch the servo linkage install video](https://img.youtube.com/vi/iwFl5_PJkDQ/hqdefault.jpg)](https://www.youtube.com/watch?v=iwFl5_PJkDQ)
 
-Or view on YouTube: https://www.youtube.com/watch?v=iwFl5_PJkDQ
+Clear link: https://www.youtube.com/watch?v=iwFl5_PJkDQ
 
 ### Setting up for Robotics Glory
 
@@ -37,19 +37,23 @@ Follow these steps to get rolling:
 
 1. Loosen the bolts holding the fuel selector valve. We will move the mounting location of this valve approximately 4 inches to the right. This makes room for the battery's new installation location.
 2. Move the battery (beneath the seat) from it's original location in front of the metal crossmember bar/seat spring mount to behind the crossmember bar. We will install the autopilot electronics box in the original battery location.
-2. Crimp a ring connector to one end of the inline fuse. This ring should be big enough to bolt the fuse onto the positive battery terminal. 
-2. Use heat-shrink solder to connect an approximately 24" section of 12 gauge red cable to the other end of the inline fuse / ring connector. The entire fused cable should be long enough to comfortably reach from the positive battery terminal over to the 2 relays we will install on the right side of the mower.
-2. Use heat-shrink solder to connect the inline fuse cable (created above) to the battery (+) VCC wires on the two relays. To be clear, we want the battery (+) wire on both of these relays wound together and then heat-shrink soldered to the fused power cable.
+3. Install the servo assembly on the mower. Watch the video linked above for details.
 
-6. (Optional) Tap in a ground bolt to the metal pan beneath the relay plate to keep your ground wires short and clean. To be clear, we just drill a hole and tap the hole with threads -- then we attach the new ground wires to this bolt.
-6. Install an on-off toggle switch for the main electronics box power. We like to install this switch behind the seat.
-8. Make a 12 AWG red/black power line with XT60 ends (of course) long enough to neatly run from the 12v main electronics relay into the electronics box. Connect this wire to the main electronics relay.
-8. Make a 12 AWG red/black power line with XT60 ends long enough to neatly run from the 12-24v step-up converter relay up to the Wingxine servos.
-8. Install a XT60 splitter on the Wingxine servo end of the 12-24v step-up converter power line. You're probably going to want to be careful to ensure that you've got 24v positive and negative on red and black (per convention) wires up at the servo box BEFORE connecting these wires to the servos. The Wingxine servos are explicility non-tolerant of reverse polarity errors.
+Wire up a fused power switch for the electronics box:
 
-9. (Optional) bolt on a [NOCO permanent charging adapter](https://www.amazon.com/NOCO-GC002-Eyelet-Terminal-Connector/dp/B004LWQ35Y/) to the battery. You may find this
-adapter quite conventient for hooking up a [NOCO charger](https://www.amazon.com/NOCO-GENIUS10-Fully-Automatic-Temperature-Compensation/dp/B07W3QT226/) to your mower. I
-often leave the OxChief autopilot powered on when the mower is not in use -- the NOCO
-charger ensures that the battery stays fully charged and ready for the next run.
+1. Crimp a ring connector to one end of the inline fuse. This ring should be big enough to bolt the fuse onto the positive battery terminal.
+2. Use heat-shrink solder to connect an approximately 18" section of 12 gauge red cable to the other end of the inline fuse / ring connector.
+3. Use heat-shrink solder to connect the inline fuse cable (created above) to the on/off switch.
+4. Use heat-shrink solder to connect an approximately 18" section of 12 gauge red cable to the other end of the on/off switch.
+5. Use heat-shrink solder to connect the other end of the 18" section you just soldered onto the switch to the red wire of an XT60 terminal.
+6. Connect the black end of the XT60 terminal above to ground by wiring as necessary.
+7. This XT60 connector should plug into it's XT60 mate in your electronics box. Now you have an on/off switch for your electronics box.
+
+Finish up the wiring:
+
+1. Connect the left/right servo signal wires from the main electronics box to the left/right servo singal wires on the servo assembly.
+2. Install the on-off toggle switch for the main electronics box power. We like to install this switch behind the seat (as opposed to the servo on/off switch, which we like to install on the bad boy control panel next to the key for quick access in the event that power to the mower control arms needs to be disengaged).
+3. (Optional) Tap in a ground bolt to the metal pan beneath the relay plate to keep your ground wires short and clean. To be clear, we just drill a hole and tap the hole with threads -- then we attach the new ground wires to this bolt.
+4. (Optional) bolt on a [NOCO permanent charging adapter](https://www.amazon.com/NOCO-GC002-Eyelet-Terminal-Connector/dp/B004LWQ35Y/) to the battery. You may find this adapter quite conventient for hooking up a [NOCO charger](https://www.amazon.com/NOCO-GENIUS10-Fully-Automatic-Temperature-Compensation/dp/B07W3QT226/) to your mower. I often leave the OxChief autopilot powered on when the mower is not in use -- the NOCO charger ensures that the battery stays fully charged and ready for the next run.
 
 Congratulations! You've now successfully installed the all electrical wiring we need to power the OxChief autopilot system.
