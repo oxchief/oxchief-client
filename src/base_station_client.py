@@ -64,20 +64,32 @@ def list_attached_devices():
 #
 def ublox_serial_port_name_helper():
     attached_devices = list_attached_devices()
-    print("Attached Devices:")
-    print(attached_devices)
+    logging.debug("Attached devices raw: %s", attached_devices)
     # Look for a device whose name contains the substring defined in the
     # config property `gnss_rtcm_serial_name_substring` (e.g. "_GNSS_receiver").
     # This mirrors how other serial ports are discovered using their name
     # substrings in `config.ini`.
     # Prefer explicit base-station GNSS substring; fall back to gnss_rtcm setting.
     target_substring = CONFIG.base_gnss_serial_name_substring
-    if target_substring:
-        target_substring_lower = target_substring.lower()
-        for i in attached_devices:
-            device_name = i[1]
-            if device_name and target_substring_lower in device_name.lower():
-                return i[0]
+    if not target_substring:
+        logging.warning("`base_gnss_serial_name_substring` is empty — no GNSS device will be matched.")
+        return False
+
+    target_substring_lower = target_substring.lower()
+    logging.debug("Looking for base GNSS devices matching substring: '%s' (case-insensitive)", target_substring)
+    for dev in attached_devices:
+        # dev expected as [path, name]
+        try:
+            dev_path, dev_name = dev[0], dev[1]
+        except Exception:
+            logging.debug("Skipping malformed device entry: %s", dev)
+            continue
+        logging.debug("Checking device %s -> name: %s", dev_path, dev_name)
+        if dev_name and target_substring_lower in dev_name.lower():
+            logging.info("Matched base GNSS device '%s' at %s", dev_name, dev_path)
+            return dev_path
+        else:
+            logging.debug("No match for %s (looking for '%s')", dev_name, target_substring)
     return False
 
 #
@@ -88,7 +100,7 @@ def ublox_serial_port_name_helper():
 def ublox_serial_port_name():
     u_blox_serial_port = ublox_serial_port_name_helper()
     while u_blox_serial_port == False:
-        print("u-blox receiver attached device not found, searching again...")
+        print("gnss receiver attached device not found, searching again...")
         u_blox_serial_port = ublox_serial_port_name_helper()
         time.sleep(1)
     print("u-blox serial port name: " + u_blox_serial_port)
