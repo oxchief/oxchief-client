@@ -66,10 +66,18 @@ def ublox_serial_port_name_helper():
     attached_devices = list_attached_devices()
     print("Attached Devices:")
     print(attached_devices)
-    for i in attached_devices:
-        device_name = i[1]
-        if device_name.find('u-blox') != -1 and device_name.find('receiver') != -1:
-            return i[0]
+    # Look for a device whose name contains the substring defined in the
+    # config property `gnss_rtcm_serial_name_substring` (e.g. "_GNSS_receiver").
+    # This mirrors how other serial ports are discovered using their name
+    # substrings in `config.ini`.
+    # Prefer explicit base-station GNSS substring; fall back to gnss_rtcm setting.
+    target_substring = CONFIG.base_gnss_serial_name_substring
+    if target_substring:
+        target_substring_lower = target_substring.lower()
+        for i in attached_devices:
+            device_name = i[1]
+            if device_name and target_substring_lower in device_name.lower():
+                return i[0]
     return False
 
 #

@@ -298,6 +298,19 @@ class Config:
         return self.get_string('Serial', 'gnss_rtcm_serial_name_substring', "_GNSS_receiver")
 
     @property
+    def base_gnss_serial_name_substring(self):
+        """
+        Unique part of name for the base-station GNSS receiver serial port.
+
+        This is used by the base station code to select which attached
+        USB serial device provides RTCM corrections. Match is case-insensitive.
+
+        Returns:
+            str: The unique part of the device name to match.
+        """
+        return self.get_string('Serial', 'base_gnss_serial_name_substring', "_USB_Serial")
+
+    @property
     def ardupilot_baud(self):
         """
         Baud rate of Flight Controller (i.e. Cube Orange) port.
