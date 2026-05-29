@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Version of this script
-VERSION="1.0.4"
+VERSION="1.0.5"
 
 # Docker image versions
-DOCKER_OX_CLIENT_VERSION="1.0.4"
+DOCKER_OX_CLIENT_VERSION="1.0.5"
 DOCKER_REALSENSE_VERSION="1.0.4"
 
 project_path="$(dirname "${BASH_SOURCE[0]}")/.." # this is the path to the oxchief-client directory

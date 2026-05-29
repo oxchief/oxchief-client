@@ -71,7 +71,13 @@ mavlink = Mavlink()
 async def main():
     """ Start up the various async methods that make up the autopilot client """
     try:
-        robot_state.write_serial_port_gnss_corrections = await serial.ublox_serial_port()
+        #Acquire the GNSS corrections serial port (_OxRTCM) in the BACKGROUND.
+        #A missing corrections device must NOT block the client from coming
+        #online -- coming online is independent of RTK corrections. (Awaiting
+        #this inline made units without a dedicated corrections serial adapter
+        #spin forever on "u-blox receiver not found" and never connect.)
+        util.asyncio_create_task_disappear_workaround(
+            serial.acquire_gnss_corrections_serial_port())
         await mavlink.setup_ardupilot_connections()
 
         robot_state.local_storage.load_mission_info_from_db()

@@ -383,10 +383,12 @@ class MessageProcessor:
                 logging.info("Let's try to re-establish write_serial_port_gnss_corrections")
                 try:
                     await self.serial.close_ublox_serial_port()
-                    #baswell March 1, 2023 -- removed line below for testing u-blox PointPerfect
-                    robot_state.write_serial_port_gnss_corrections = await self.serial.ublox_serial_port()
-                    logging.info("Looks like we've successfully re-established the"
-                                " serial port connection")
+                    robot_state.write_serial_port_gnss_corrections = None
+                    #Re-acquire in the BACKGROUND so a permanently-gone
+                    #corrections device can't hang this corrections task here
+                    #(awaiting ublox_serial_port() inline loops forever).
+                    util.asyncio_create_task_disappear_workaround(
+                        self.serial.acquire_gnss_corrections_serial_port())
                 except Exception as e:
                     logging.error(f"Error connecting to u-blox gnss receiver: {e}")
                     traceback.print_exc()

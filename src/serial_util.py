@@ -101,6 +101,38 @@ class Serial:
             baudrate=self.config.gnss_rtcm_baud)
         return write_serial_port
 
+    async def acquire_gnss_corrections_serial_port(self) -> None:
+        """
+        Background-task entry point that finds the GNSS corrections serial
+        port (config.gnss_rtcm_serial_name_substring, e.g. _OxRTCM) and stores
+        the open StreamWriter in robot_state.write_serial_port_gnss_corrections.
+
+        Run this via util.asyncio_create_task_disappear_workaround(...) rather
+        than awaiting it inline: a missing corrections device must NEVER block
+        the client from coming online -- coming online is independent of RTK
+        corrections. Until the device appears, RTCM messages are simply dropped
+        (see write_to_serial); telemetry, control, and the cloud websockets are
+        unaffected. Idempotent -- a second call is a no-op while an acquisition
+        is already in progress or the port is already open.
+        """
+        if (robot_state.write_serial_port_gnss_corrections is not None
+                or robot_state.acquiring_gnss_corrections_port):
+            return
+        robot_state.acquiring_gnss_corrections_port = True
+        try:
+            while robot_state.write_serial_port_gnss_corrections is None:
+                try:
+                    robot_state.write_serial_port_gnss_corrections = (
+                        await self.ublox_serial_port())
+                    logging.info("GNSS corrections serial port acquired -- RTK "
+                                 "corrections will now be forwarded to the receiver.")
+                except Exception as e:
+                    logging.warning("Failed to open GNSS corrections serial port; "
+                                    "retrying in 5s. %s", e)
+                    await asyncio.sleep(5)
+        finally:
+            robot_state.acquiring_gnss_corrections_port = False
+
     async def close_ublox_serial_port(self) -> None:
         """Close u-blox serial port"""
         logging.info("u-blox serial port -- attempting to close...")
@@ -119,6 +151,10 @@ class Serial:
         Args:
             message (bytes): RTCM correction data to write to port
         """
+        if robot_state.write_serial_port_gnss_corrections is None:
+            logging.debug("No GNSS corrections serial port available yet; "
+                          "dropping RTCM message (robot stays online without RTK).")
+            return
         message_first_n = message
         if len(message) > 20:
             message_first_n = message_first_n[:20]

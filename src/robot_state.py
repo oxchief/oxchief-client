@@ -78,6 +78,13 @@ time_last_start) and then just OR those to find this value.
 write_serial_port_gnss_corrections:StreamWriter = None
 """serial port connected to u-blox gnss receiver where we write RTCM data"""
 
+acquiring_gnss_corrections_port: bool = False
+"""
+True while a background task is polling for / opening the GNSS corrections
+serial port. Guards against spawning duplicate acquisition loops (the Serial
+class is instantiated more than once, so this lives here as shared state).
+"""
+
 uri_correction_verbose = False
 """
 RTCM Correction URI. We pull this in initially from startupdata. Note
