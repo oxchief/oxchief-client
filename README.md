@@ -74,4 +74,6 @@ Once you've secured your mower, simply follow the installation guides below to e
 
 Review the [OxChief Features](docs/OXCHIEF_FEATURES.md) guide for an overview of the OxChief UI's features.
 
+Robot not showing up as **online**? See the [Troubleshooting guide](docs/TROUBLESHOOTING.md) -- it's almost always one small thing.
+
 Please feel free to hit [OxChief Reddit](https://www.reddit.com/r/OxChief/) with any questions.

@@ -61,6 +61,8 @@ sudo ./re.sh
 8. Log in to [OxChief](https://oxchief.com/) and verify your robot is connected and ready:
 ![OxChief Client File](images/oxchief_ui/OxChief-Control-Live.gif)
 
+> Robot still showing **offline**? Don't worry — it's almost always one small thing. Walk through the [Troubleshooting guide](TROUBLESHOOTING.md).
+
 9. View OxChief client logs via:
 ```
 cd /home/pi/src/oxchief/oxchief-client
