@@ -208,7 +208,23 @@ class Mavlink:
             ardupilot_serial_port_name,
             self.config.ardupilot_baud)
         robot_state.mutil.heartbeat_interval = 0.5  # seconds
-        robot_state.mutil.wait_heartbeat()
+        # wait_heartbeat() with no timeout blocks forever AND silently if the flight
+        # controller isn't responding (no power / wrong baud / bad wiring), which
+        # leaves the container running but the robot permanently offline with no clue
+        # why. Use a bounded wait that retries and logs loudly so it's diagnosable
+        # (and self-heals the moment the FC starts responding).
+        heartbeat = None
+        heartbeat_waits = 0
+        while not heartbeat:
+            heartbeat = robot_state.mutil.wait_heartbeat(timeout=10)
+            if not heartbeat:
+                heartbeat_waits += 1
+                logging.warning(
+                    "No MAVLink heartbeat from flight controller on "
+                    f"{ardupilot_serial_port_name} after {heartbeat_waits * 10}s -- "
+                    f"check FC power, baud ({self.config.ardupilot_baud}) and wiring. "
+                    "Robot will not come online until the flight controller responds.")
+        logging.info("flight controller heartbeat received")
         robot_state.wploader = mavwp.MAVWPLoader(
             robot_state.mutil.target_system,
             robot_state.mutil.target_component)

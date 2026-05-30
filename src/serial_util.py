@@ -135,6 +135,8 @@ class Serial:
 
     async def close_ublox_serial_port(self) -> None:
         """Close u-blox serial port"""
+        if robot_state.write_serial_port_gnss_corrections is None:
+            return
         logging.info("u-blox serial port -- attempting to close...")
         try:
             robot_state.write_serial_port_gnss_corrections.close()
@@ -185,14 +187,27 @@ class Serial:
     async def ardupilot_serial_port_names(self) -> list[str]:
         """
         Looks through /dev/tty* attached devices looking for 2 ArduPilot ports. If fewer
-        than 2 are found then it sleeps for a bit and tries again 'till two are 
-        finally found (or not found, in which case it would loop forever).
+        than 2 are found then it sleeps for a bit and tries again 'till two are
+        finally found (it self-heals if the adapter is plugged in later).
+
+        While it waits it logs a loud, actionable WARNING (every ~15s) naming the
+        port substrings it needs, so a missing/miswired flight-controller telem
+        adapter is easy to diagnose -- the robot cannot come online until both
+        ports are present.
         """
         ardupilot_serial_ports = await self.ardupilot_serial_port_names_helper()
+        waited = 0
         while len(ardupilot_serial_ports) < 2:
             await asyncio.sleep(1)
-            logging.info(f"{len(ardupilot_serial_ports)} ardupilot receivers found, "
-                f"we'll sleep one second and then keep on looking 'till we find 2...")
+            waited += 1
+            msg = (f"Found {len(ardupilot_serial_ports)} of 2 flight-controller telem "
+                   f"ports (need device names containing "
+                   f"'{self.config.ardupilot_serial_1_name_substring}' and "
+                   f"'{self.config.ardupilot_serial_2_name_substring}'); still searching. "
+                   "Robot will not come online until both are present -- check the "
+                   "flight-controller USB-serial adapters and wiring.")
+            # escalate to WARNING every ~15s so a stuck search is obvious in the logs
+            (logging.warning if waited % 15 == 0 else logging.info)(msg)
             ardupilot_serial_ports = await self.ardupilot_serial_port_names_helper()
 
         logging.info("ardupilot serial port names:")
