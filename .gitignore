@@ -24,3 +24,23 @@ tests/*
 # Python cache files
 __pycache__/
 *.pyc
+
+# Credentials & secrets
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+secrets.yaml
+secrets.yml
+
+# IDE
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code local-only state
+.claude/settings.local.json
+.claude/worktrees/
