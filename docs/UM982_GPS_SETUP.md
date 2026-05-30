@@ -1,0 +1,96 @@
+## OxChief GNSS Setup — Unicore UM982 (recommended)
+
+The UM982 is the **recommended GNSS receiver** for OxChief. It is a single
+dual-antenna RTK receiver that computes a true **GPS heading** from its two
+antennas — so the mower does not depend on a magnetic compass.
+
+> Why this matters: a zero-turn mower is a large steel machine surrounded by
+> motors and current. A magnetometer on that frame is unreliable, and bad
+> heading is the most common cause of a mower that wanders or won't track a
+> straight line. The UM982 gets heading from the two GPS antennas instead, so
+> there is **no compass to calibrate and nothing magnetic to fool it**.
+
+This guide is the GNSS section of the build. The legacy single-antenna u-blox
+ZED-F9P path still works and is documented in the photo walkthrough in
+[Electronics Box Setup](ELECTRONICS_BOX_SETUP.md); new builds should use the
+UM982.
+
+### Parts
+
+| Part | Notes |
+|---|---|
+| Unicore UM982 dual-antenna RTK receiver + 2 antennas | A UM982 board with two antenna connectors (ANT1 = position, ANT2 = heading). Most UM982 kits ship with both antennas. The UM980 does position but not heading — get the UM982. |
+| OxChief `_OxRTCM` USB-to-serial adapter | Carries RTK corrections from the Pi into the UM982's RX (same as the F9P build). |
+
+**Where to buy:** the [Holybro H-RTK Unicore UM982 (Dual Antenna Heading)](https://holybro.com/products/h-rtk-unicore-um982) (~$250, includes both helical antennas and cables) is a turnkey, ArduPilot-ready option. On a budget, a generic "UM982 + 2-antenna kit" on AliExpress runs ~$130 (search *"UM982 dual antenna RTK kit"*) — same receiver, lower-grade antennas. Either way, mount the two antennas with a fixed separation (the "baseline"); a longer baseline gives more precise heading (~0.5 m+ is typical on a mower).
+
+### Wiring
+
+Three independent links:
+
+1. **Navigation (UM982 → flight controller):** UM982 **COM1 TX → Cube GPS1 port**
+   (ArduPilot `SERIAL3`). The UM982 sends NMEA — including the dual-antenna
+   heading — to the Cube here.
+2. **Corrections (Pi → UM982):** the `_OxRTCM` USB-serial adapter from the Pi →
+   **UM982 RX**. RTK corrections from your base station arrive over the cloud and
+   the client writes them to this adapter. (Nothing changes here vs the F9P build.)
+3. **Configuration (UM982 → Pi, one time):** connect the **UM982's own USB port**
+   to the Pi while you run the setup step below. It shows up as a CH340 device.
+
+Mount the two antennas with a clear sky view and a fixed baseline. ANT1 is the
+position antenna; ANT2 is the heading antenna.
+
+### 1. Configure the UM982 receiver
+
+With the UM982's USB connected to the Pi (and the OxChief client **not** running,
+so the GPS port is free), from the cloned repo on the Pi:
+
+```
+pip3 install pyserial   # if not already present
+python3 scripts/configure_um982.py
+```
+
+This puts the receiver in **MODE ROVER**, sets the COM ports to 230400 baud,
+enables the NMEA sentences ArduPilot needs on COM1 (including the
+`UNIHEADINGA`/`GPHDT` heading sentences), and `SAVECONFIG`s so it sticks. Run
+`python3 scripts/configure_um982.py --verify-only` to check it afterward.
+
+> Heading calibration: the antenna-specific `CONFIG HEADING` is set per unit and
+> the script preserves (never overwrites) it. If `--verify-only` reports the
+> heading config is missing, set it once with the Unicore command per your
+> antenna layout (see the UM982 user manual) and re-run.
+
+### 2. Load the UM982 ArduPilot parameters
+
+In Mission Planner: **Config → Full Parameter Tree → Load from file → Write
+Params**, using:
+
+```
+cfg/OxChief_Cube_Orange_Bad_Boy_UM982.param
+```
+
+Versus the legacy F9P param file, this set: takes GPS heading instead of compass
+(`EK3_SRC1_YAW=2`), **disables the compass** (`COMPASS_ENABLE=0`, `COMPASS_USE=0`,
+`COMPASS_DISBLMSK=65535`), and runs GPS1 at 230400 (`SERIAL3_BAUD=230`).
+
+Then calibrate the accelerometers ([guide](https://ardupilot.org/rover/docs/common-accelerometer-calibration.html)).
+**Skip the Large-Vehicle MagCal compass step** — there is no compass in this setup.
+
+> The GPS antenna lever-arm offsets (`GPS_POS1_*`, `GPS_POS2_*`) in the param file
+> are example values. Measure your own antenna positions (body frame, meters from
+> the autopilot: X forward, Y right, Z down) and set them for best accuracy.
+
+### 3. Set the corrections baud
+
+The repo `config.ini` already ships `gnss_rtcm_baud=230400` for the UM982. If you
+are upgrading from an F9P build, confirm it reads 230400 (not 115200).
+
+### Base station — you can reuse a u-blox ZED-F9P
+
+RTK corrections are a standard format (RTCM3), so your base station does **not**
+have to match the rover. If you already own a u-blox ZED-F9P / ArduSimple kit, it
+makes a perfectly good base for a UM982 rover — see
+[Base Station Setup](OXCHIEF_BASE_STATION_SETUP.md). Configure the F9P base to
+emit the standard set — `1005` (base position), MSM4 `1074/1084/1094/1124`, and
+`1230` (GLONASS biases, which matter in a mixed-vendor base/rover pair) — and
+survey-in its position. A UM982 base works too.

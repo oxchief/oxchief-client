@@ -28,13 +28,9 @@ Install ArduPilot Rover firmware on Cube Orange
 1. Download [Mission Planner](https://ardupilot.org/planner/docs/mission-planner-installation.html)
 2. Connect Cube Orange to your PC via USB
 3. Install [Arudpilot Rover Firmware](https://ardupilot.org/rover/docs/common-loading-firmware-onto-pixhawk.html) on the Cube
-4. Upload the [OxChief Ardupilot Bad Boy params](../cfg/OxChief_Cube_Orange_Bad_Boy_Params_2024_11_20.param) to your Cube Orange via:
-```
-Mission Planner --> Config --> "Full Parameter Tree" --> "Load from file" and then "Write Params"
-```
+4. Set up your GNSS receiver. OxChief recommends the dual-antenna **Unicore UM982** — it gives true GPS heading with no compass. Follow the [UM982 GNSS Setup](UM982_GPS_SETUP.md) guide, which covers the wiring, the one-time receiver configuration, and loading the ArduPilot parameter file `../cfg/OxChief_Cube_Orange_Bad_Boy_UM982.param` (Mission Planner --> Config --> "Full Parameter Tree" --> "Load from file" --> "Write Params"). Building with a legacy single-antenna u-blox ZED-F9P instead? Load `../cfg/OxChief_Cube_Orange_Bad_Boy_Params_2024_11_20.param` the same way.
 5. Calibrate Cube Orange [accells](https://ardupilot.org/rover/docs/common-accelerometer-calibration.html). 
-6. Calibrate Cube Orange mag via [Large Vehicle MagCal](https://ardupilot.org/rover/docs/common-compass-calibration-in-mission-planner.html#large-vehicle-magcal) button in Mission Planner.
-![Large Vehicle MagCal](images/mission_planner/Mission-Planner-Large-Vehicle-MagCal.jpg)
+6. With the UM982 there is **no compass to calibrate** — heading comes from the two GPS antennas. (Legacy u-blox ZED-F9P builds only: calibrate the compass via the [Large Vehicle MagCal](https://ardupilot.org/rover/docs/common-compass-calibration-in-mission-planner.html#large-vehicle-magcal) button in Mission Planner.)
 
 Your Cube Orange flight controller is now ready to connect to the OxChief client.
 

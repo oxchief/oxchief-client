@@ -1,3 +1,22 @@
+## [1.1.0] - 2026-05-30
+### Added
+- Unicore UM982 dual-antenna GNSS support (now the recommended receiver). The
+  UM982 provides true GPS heading from its two antennas, so the mower no longer
+  depends on a magnetic compass (unreliable on a steel zero-turn). New files:
+  `cfg/OxChief_Cube_Orange_Bad_Boy_UM982.param` (GPS-yaw, compass disabled, GPS1
+  at 230400) and `scripts/configure_um982.py` (one-time receiver provisioning:
+  MODE ROVER, COM baud, NMEA/heading output, SAVECONFIG). New guide
+  `docs/UM982_GPS_SETUP.md`; mower-client / electronics-box / base-station docs
+  updated to point at the UM982 path (F9P kept as the documented legacy option).
+### Changed
+- `config.ini` / `src/config.ini`: `gnss_rtcm_baud` default 115200 -> 230400 to
+  match the UM982. Legacy u-blox ZED-F9P builds should set this back to 115200.
+### Notes
+- No client code changed: the GNSS data path is receiver-agnostic (raw RTCM3
+  written over serial), so this release is parameters + config + docs + a setup
+  script. A u-blox ZED-F9P base station feeds a UM982 rover fine — RTCM3 is a
+  cross-vendor standard.
+
 ## [1.0.6] - 2026-05-29
 ### Changed
 - Flight-controller startup no longer fails silently. When the FC telem ports

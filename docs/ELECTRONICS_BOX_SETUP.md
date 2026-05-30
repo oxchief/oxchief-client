@@ -1,5 +1,7 @@
 ## OxChief Electronics Box Setup
 
+> **GNSS receiver:** the photos below show the legacy single-antenna u-blox ZED-F9P (ArduSimple). New builds should use the dual-antenna **Unicore UM982** for true GPS heading with no compass — see [UM982 GNSS Setup](UM982_GPS_SETUP.md). The rest of the box build (Pi, Cube, power, RealSense) is identical.
+
 ### Parts List
 
 | # | Part | Description / Notes |
@@ -8,7 +10,7 @@
 | 2 | [Flight Controller — Cube Orange](https://irlock.com/products/cube-orange-plus-standard-set) | Officially supported. |
 | 3 | [OxChief Autopilot Adapter Set](https://shop.oxchief.com/products/oxchief-raspberry-pi-to-cube-autopilot-adapter-set) | Adapter for Pi ↔ Cube communication. |
 | 4 | [SD card for Pi — Samsung Pro Endurance 128GB](https://www.amazon.com/dp/B09WB1857W/) | Endurance microSD recommended. |
-| 5 | [ArduSimple SimpleRTK2B starter kit (u-blox ZED-F9P)](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/) | GNSS receiver & antenna, supported. |
+| 5 | [ArduSimple SimpleRTK2B starter kit (u-blox ZED-F9P)](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/) | Legacy single-antenna GNSS option. New builds: dual-antenna Unicore UM982 — see [UM982 GNSS Setup](UM982_GPS_SETUP.md). |
 | 6 | [RM3100 magnetometer](https://www.getfpv.com/mateksys-ap-periph-can-magnetometer-rm3100.html) | External compass (also available at [ReadyMadeRC](https://www.readymaderc.com/products/details/matek-ap-periph-can-magnetometer-rm3100)). |
 | 7 | [Aluminum enclosure — Bud AN-2823-A](https://www.mouser.com/ProductDetail/Bud-Industries/AN-2823-A?qs=9qK3lZr%252bi0IAMON5kROY8A%3D%3D) and [mounting plate — Bud ANX-91323](https://www.mouser.com/ProductDetail/Bud-Industries/ANX-91323?qs=hFSnKGZfZOZx7rEIKm0bLw%3D%3D) | Aluminum recommended for heat dissipation. |
 | 8 | [4-to-1 USB Hub](https://www.amazon.com/dp/B00XMD7KPU) | For extra devices. |

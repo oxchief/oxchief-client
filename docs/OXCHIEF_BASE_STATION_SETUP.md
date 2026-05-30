@@ -9,6 +9,8 @@
 | 3 | [ArduSimple SimpleRTK2B (u-blox ZED-F9P)](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/) | High-precision GNSS receiver & antenna kit for RTK corrections. |
 | 4 | USB cable connecting Raspberry Pi to ZED-F9P | Use an appropriate cable for your receiver (USB-A → USB-C or USB-A → Micro-B depending on module). |
 
+> **Base receiver:** a u-blox ZED-F9P or a Unicore UM982/UM980 both work — RTK corrections are a standard format (RTCM3), so the base does not have to match the receiver on the mower. If your mower runs a UM982 and you already own an F9P/ArduSimple kit, reuse it here as the base. Configure an F9P base to output `1005` + MSM4 (`1074/1084/1094/1124`) + `1230` (GLONASS biases), and survey-in its position.
+
 For sub-inch precision, you're going to want a reliable source of corrections for your GNSS receiver. Our experience has been that owning your own base station is the surest way to make this happen. 
 
 Running your own OxChief GNSS base station has several perks, including:
