@@ -14,8 +14,10 @@ What it does:
   - Sets NMEA V4.10 and enables the NMEA sentences ArduPilot needs on COM1,
     including UNIHEADINGA/GPHDT which carry the dual-antenna heading.
   - SAVECONFIG so the settings survive a power cycle.
-  - Leaves the antenna-specific `CONFIG HEADING` alone (it is calibrated per
-    unit and must not be overwritten).
+  - Dual-antenna heading is ENABLED BY DEFAULT on the UM982, so no heading-
+    enable command is needed. Optionally tune it for your install with
+    --baseline-cm (measured antenna spacing) and/or --heading-offset (when the
+    antenna line is not along the vehicle's forward axis).
 
 Wiring assumption: the UM982's own USB port is connected to this machine (the
 receiver shows up as a CH340 device, USB vendor id 1a86). COM1 TX goes to the
@@ -27,6 +29,8 @@ GPS serial port, so stop the container first if it is already running).
 Usage:
     python3 scripts/configure_um982.py                 # auto-detect + configure
     python3 scripts/configure_um982.py --verify-only   # read-only check
+    python3 scripts/configure_um982.py --baseline-cm 100   # tell it the 1.0 m baseline
+    python3 scripts/configure_um982.py --heading-offset 90 # antennas mounted left-right
     python3 scripts/configure_um982.py --port /dev/ttyUSB0
     python3 scripts/configure_um982.py --baud 230400
 
@@ -131,7 +135,7 @@ class UM982:
                     cfg[parts[1]] = parts[2].split("*")[0].strip()
         return cfg
 
-    def configure(self):
+    def configure(self, heading_offset=None, baseline_cm=None, baseline_tol_cm=5):
         print(f"\n=== Configuring UM982 on {self.port} ===")
 
         mode = self.get_mode()
@@ -150,15 +154,27 @@ class UM982:
         ok = self._send_ok("CONFIG NMEAVERSION V410")
         print(f"[nmea] CONFIG NMEAVERSION V410 ... {'OK' if ok else 'FAILED'}")
 
-        # Heading config is antenna-specific and calibrated per unit -- read, never write.
-        heading = [v for k, v in self.get_config().items() if "HEADING" in k.upper()]
-        if heading:
-            print("[head] existing CONFIG HEADING preserved:")
-            for h in heading:
-                print(f"       {h}")
-        else:
-            print("[head] WARNING: no CONFIG HEADING found -- dual-antenna heading "
-                  "needs a one-time CONFIG HEADING setup (see UM982_GPS_SETUP.md)")
+        # Dual-antenna heading is ON BY DEFAULT (Unicore N4 ref manual). We do not
+        # need to "enable" it -- only optionally tune it for this install.
+        if baseline_cm is not None:
+            self._send_ok("CONFIG HEADING FIXLENGTH")
+            ok = self._send_ok(f"CONFIG HEADING LENGTH {baseline_cm} {baseline_tol_cm}")
+            print(f"[head] CONFIG HEADING LENGTH {baseline_cm} {baseline_tol_cm} "
+                  f"(baseline cm / tol cm) ... {'OK' if ok else 'FAILED'}")
+        if heading_offset is not None:
+            ok = self._send_ok(f"CONFIG HEADING OFFSET {heading_offset} 0")
+            print(f"[head] CONFIG HEADING OFFSET {heading_offset} 0 "
+                  f"(deg from forward axis) ... {'OK' if ok else 'FAILED'}")
+        if baseline_cm is None and heading_offset is None:
+            existing = [v for k, v in self.get_config().items() if "HEADING" in k.upper()]
+            if existing:
+                print("[head] existing CONFIG HEADING (left as-is):")
+                for h in existing:
+                    print(f"       {h}")
+            else:
+                print("[head] no explicit CONFIG HEADING -- using the receiver default "
+                      "(auto baseline). Heading still works; pass --baseline-cm / "
+                      "--heading-offset to tune for your mount.")
 
         print("[out ] enabling NMEA output on COM1:")
         for cmd in UM982_NMEA_COMMANDS:
@@ -203,6 +219,16 @@ def main():
     p.add_argument("--port", help="UM982 serial port (auto-detected if omitted)")
     p.add_argument("--baud", type=int, default=UM982_BAUD, help="probe baud (default 230400)")
     p.add_argument("--verify-only", action="store_true", help="read-only check, no changes")
+    p.add_argument("--baseline-cm", type=int, metavar="CM",
+                   help="measured ANT1<->ANT2 spacing in cm (rigid mount); sets "
+                        "CONFIG HEADING LENGTH to speed/stabilize the heading fix. "
+                        "Omit to let the receiver auto-estimate.")
+    p.add_argument("--baseline-tol-cm", type=int, default=5, metavar="CM",
+                   help="tolerance for --baseline-cm (default 5)")
+    p.add_argument("--heading-offset", type=float, metavar="DEG",
+                   help="degrees from the vehicle forward axis to the ANT1->ANT2 line "
+                        "(e.g. 90 if antennas are mounted left-right, ANT1 on the right); "
+                        "sets CONFIG HEADING OFFSET. Omit if ANT1 is forward of ANT2.")
     args = p.parse_args()
 
     port = args.port or find_um982_port()
@@ -221,7 +247,14 @@ def main():
         return 1
 
     try:
-        ok = um.verify() if args.verify_only else um.configure()
+        if args.verify_only:
+            ok = um.verify()
+        else:
+            ok = um.configure(
+                heading_offset=args.heading_offset,
+                baseline_cm=args.baseline_cm,
+                baseline_tol_cm=args.baseline_tol_cm,
+            )
     finally:
         um.close()
     return 0 if ok else 1

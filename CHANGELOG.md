@@ -5,9 +5,13 @@
   depends on a magnetic compass (unreliable on a steel zero-turn). New files:
   `cfg/OxChief_Cube_Orange_Bad_Boy_UM982.param` (GPS-yaw, compass disabled, GPS1
   at 230400) and `scripts/configure_um982.py` (one-time receiver provisioning:
-  MODE ROVER, COM baud, NMEA/heading output, SAVECONFIG). New guide
-  `docs/UM982_GPS_SETUP.md`; mower-client / electronics-box / base-station docs
-  updated to point at the UM982 path (F9P kept as the documented legacy option).
+  MODE ROVER, COM baud, NMEA/heading output, SAVECONFIG; optional
+  `--baseline-cm` / `--heading-offset` to tune dual-antenna heading for the
+  mount). New guide `docs/UM982_GPS_SETUP.md` — documents that dual-antenna
+  heading is on by default, antenna placement (ANT1 forward, >=30cm / ~1m
+  baseline, swapping cables flips heading 180deg), and that heading works
+  without RTK. Mower-client / electronics-box / base-station docs updated to
+  point at the UM982 path (F9P kept as the documented legacy option).
 ### Changed
 - `config.ini` / `src/config.ini`: `gnss_rtcm_baud` default 115200 -> 230400 to
   match the UM982. Legacy u-blox ZED-F9P builds should set this back to 115200.

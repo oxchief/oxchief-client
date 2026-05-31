@@ -37,8 +37,13 @@ Three independent links:
 3. **Configuration (UM982 → Pi, one time):** connect the **UM982's own USB port**
    to the Pi while you run the setup step below. It shows up as a CH340 device.
 
-Mount the two antennas with a clear sky view and a fixed baseline. ANT1 is the
-position antenna; ANT2 is the heading antenna.
+Mount the two antennas with a clear sky view on a **rigid, fixed baseline**. ANT1
+is the master (position) antenna and ANT2 is the slave (heading) antenna — heading
+is the bearing from ANT1 → ANT2, so mount ANT1 forward and ANT2 directly behind it
+along the mower's centerline. Keep them at least 30 cm apart; ~1 m gives
+sub-degree heading (0.5 m is decent, 0.3 m is noisy), so spread them as far as the
+frame allows. **Swapping the two antenna cables flips the heading 180°.** If you
+can't mount them front-to-back, use the `--heading-offset` option below.
 
 ### 1. Configure the UM982 receiver
 
@@ -55,10 +60,18 @@ enables the NMEA sentences ArduPilot needs on COM1 (including the
 `UNIHEADINGA`/`GPHDT` heading sentences), and `SAVECONFIG`s so it sticks. Run
 `python3 scripts/configure_um982.py --verify-only` to check it afterward.
 
-> Heading calibration: the antenna-specific `CONFIG HEADING` is set per unit and
-> the script preserves (never overwrites) it. If `--verify-only` reports the
-> heading config is missing, set it once with the Unicore command per your
-> antenna layout (see the UM982 user manual) and re-run.
+> **About heading:** dual-antenna heading is **on by default** on the UM982 — the
+> command above (MODE ROVER + enabling `UNIHEADINGA`/`GPHDT` + `SAVECONFIG`) is all
+> that's required to get heading out; there is no separate "enable heading" step.
+> Heading also works **without** RTK corrections (RTK is only for cm-level
+> position). Two optional tweaks for your specific mount:
+> - `--baseline-cm <cm>`: your measured ANT1↔ANT2 spacing (e.g. `--baseline-cm 100`
+>   for 1 m) — speeds up and stabilizes the first heading fix.
+> - `--heading-offset <deg>`: use if the antenna line isn't along the mower's
+>   forward axis, e.g. `--heading-offset 90` for antennas mounted left-right with
+>   ANT1 on the right.
+>
+> Example: `python3 scripts/configure_um982.py --baseline-cm 100`
 
 ### 2. Load the UM982 ArduPilot parameters
 
