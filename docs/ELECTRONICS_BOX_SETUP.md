@@ -1,6 +1,6 @@
 ## OxChief Electronics Box Setup
 
-> **GNSS receiver:** the photos below show the legacy single-antenna u-blox ZED-F9P (ArduSimple). New builds should use the dual-antenna **Unicore UM982** for true GPS heading with no compass — see [UM982 GNSS Setup](UM982_GPS_SETUP.md). The rest of the box build (Pi, Cube, power, RealSense) is identical.
+> **GNSS receiver:** this build uses the **Holybro H-RTK Unicore UM982** — a dual-antenna RTK receiver with true GPS heading and no compass. Receiver wiring and the one-time configuration are in [UM982 GNSS Setup](UM982_GPS_SETUP.md). A few photos in the GNSS step below still show the older single-antenna u-blox ZED-F9P (ArduSimple), which remains a legacy alternative; everything else in the box build (Pi, Cube, power, RealSense) is identical either way.
 
 ### Parts List
 
@@ -10,8 +10,8 @@
 | 2 | [Flight Controller — Cube Orange](https://irlock.com/products/cube-orange-plus-standard-set) | Officially supported. |
 | 3 | [OxChief Autopilot Adapter Set](https://shop.oxchief.com/products/oxchief-raspberry-pi-to-cube-autopilot-adapter-set) | Adapter for Pi ↔ Cube communication. |
 | 4 | [SD card for Pi — Samsung Pro Endurance 128GB](https://www.amazon.com/dp/B09WB1857W/) | Endurance microSD recommended. |
-| 5 | [ArduSimple SimpleRTK2B starter kit (u-blox ZED-F9P)](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/) | Legacy single-antenna GNSS option. New builds: dual-antenna Unicore UM982 — see [UM982 GNSS Setup](UM982_GPS_SETUP.md). |
-| 6 | [RM3100 magnetometer](https://www.getfpv.com/mateksys-ap-periph-can-magnetometer-rm3100.html) | External compass (also available at [ReadyMadeRC](https://www.readymaderc.com/products/details/matek-ap-periph-can-magnetometer-rm3100)). |
+| 5 | [Holybro H-RTK Unicore UM982](https://holybro.com/products/h-rtk-unicore-um982) | **Recommended GNSS receiver** — dual-antenna RTK with true GPS heading, no compass. Includes 2 helical antennas + cables. Setup: [UM982 GNSS Setup](UM982_GPS_SETUP.md). Legacy alternative: single-antenna [ArduSimple SimpleRTK2B / u-blox ZED-F9P](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/). |
+| 6 | [RM3100 magnetometer](https://www.getfpv.com/mateksys-ap-periph-can-magnetometer-rm3100.html) | External compass — **only for the legacy ZED-F9P build**. Not used with the UM982 (heading comes from the dual GPS antennas; the compass is disabled). |
 | 7 | [Aluminum enclosure — Bud AN-2823-A](https://www.mouser.com/ProductDetail/Bud-Industries/AN-2823-A?qs=9qK3lZr%252bi0IAMON5kROY8A%3D%3D) and [mounting plate — Bud ANX-91323](https://www.mouser.com/ProductDetail/Bud-Industries/ANX-91323?qs=hFSnKGZfZOZx7rEIKm0bLw%3D%3D) | Aluminum recommended for heat dissipation. |
 | 8 | [4-to-1 USB Hub](https://www.amazon.com/dp/B00XMD7KPU) | For extra devices. |
 | 9 | [Heat-shrink solder](https://www.amazon.com/dp/B0BKSJQC9Q) | Heat-shrink solder connections. |
@@ -62,9 +62,8 @@ We need to drill 3 holes into the short sides of the electronics box.
 
 - The first hole should be exactly 1 1/16" for the 90 degree 3/4" liquid tight connector. We use 3/4" electrical conduit to connect the OxChief Obstacle Enclosure in the front of the mower to the autopilot electronics box under the operator seat. We send the following wires in this conduit tunnel: 
     - USB cable connecting the RealSense obstacle sensor in the front of the mower to the Raspberry Pi in the electronics box
-    - Power/signal cable between the compass in the obstacle enclosure and the autopilot
-    in the electronics box
-    - GNSS antenna cable
+    - GNSS antenna cable(s) — the UM982 uses two antennas for heading; see [UM982 GNSS Setup](UM982_GPS_SETUP.md) for placement
+    - Legacy ZED-F9P build only: power/signal cable between the external compass in the obstacle enclosure and the autopilot (the UM982 needs no compass)
     - Optional: Raspberry Pi Wifi antenna cable
 - The second hole is on the right side.  It should be roughly 1 3/16". We will fit it with a rubber grommet.
 - The third hole is on the left side. It should be roughly 1 3/16". This hole is for the servo signal wires and the USB-C cable connecting your Raspberry Pi to your phone (for hotspot tethering). After drilling the hole, you will want to fit in a rubber grommet to protect the wires.
@@ -77,7 +76,7 @@ We need to drill 3 holes into the short sides of the electronics box.
 
 - Fresh mounting plate ![Base Plate](images/electronics_box/2-Base-Plate.jpg)
 
-- Prepped mounting plate. 35mm nylon standoffs are for your Raspberry Pi -- mount them bottom/center as shown. 15mm nylon standoffs are for the ArduSimple u-blox gnss receiver -- they are on the bottom right. Velcro squares on the left for autopilot. Velcro on upper right for USB hub. Electrical tape to ensure OxChief USB adapters don't arc on the mounting plate.  ![Prepped Base Plate](images/electronics_box/3-Base-Plate-Prepped.jpg)
+- Prepped mounting plate. 35mm nylon standoffs are for your Raspberry Pi -- mount them bottom/center as shown. 15mm nylon standoffs are for the GNSS receiver (the Holybro UM982; the legacy ArduSimple mounts the same way) -- they are on the bottom right. Velcro squares on the left for autopilot. Velcro on upper right for USB hub. Electrical tape to ensure OxChief USB adapters don't arc on the mounting plate.  ![Prepped Base Plate](images/electronics_box/3-Base-Plate-Prepped.jpg)
 
 - Mounting plate in electronics box. Go ahead and attach plate to box with a couple of the included screws (not pictured). ![Box With Plate](images/electronics_box/4-Box-With-Plate.jpg)
 
@@ -99,23 +98,16 @@ We need to drill 3 holes into the short sides of the electronics box.
 
 - Connect OxChief OxGPS2 connector to Cube GPS 2 port and USB hub ![GPS 2 to USB](images/electronics_box/11-GPS-2-to-USB.jpg)
 
-- Locate ArduSimple GNSS receiver and a couple of nylon standoffs ![ArduSimple GNSS](images/electronics_box/12-ArduSimple-GNSS.jpg)
+#### GNSS receiver — Holybro Unicore UM982
 
-- Mount ArduSimple GNSS receiver in the electronics box with the nylon standoffs ![ArduSimple Mounted](images/electronics_box/13-ArduSimple-Mounted.jpg)
+OxChief uses the **Holybro H-RTK Unicore UM982** (dual-antenna, GPS heading, no compass). Mount it on the 15mm nylon standoffs (bottom-right of the plate, where the legacy ArduSimple went), then wire and configure it per [UM982 GNSS Setup](UM982_GPS_SETUP.md). In short:
 
-- Locate u-blox gnss antenna ![u-blox Antenna](images/electronics_box/14-u-blox-antenna.jpg)
+- **UM982 COM1 → Cube GPS1 port** — sends position + heading (NMEA) to the autopilot.
+- **OxChief `_OxRTCM` USB-serial adapter → UM982 RX** (via the USB hub) — RTK corrections from the Pi.
+- **UM982 USB → USB hub** — used once to run `python3 scripts/configure_um982.py` (MODE ROVER, baud, NMEA/heading output, SAVECONFIG); also powers the module.
+- **Two antennas** on a fixed baseline — ANT1 forward (master), ANT2 behind (slave). See [UM982 GNSS Setup](UM982_GPS_SETUP.md) for placement, baseline length, and the 180° heading-flip gotcha.
 
-- Connect u-blox antenna to ArduSimple GNSS receiver ![u-blox Antenna Connected](images/electronics_box/15-u-blox-antenna-connected.jpg)
-
-- Locate Cube GPS1 Cable ![ArduSimple to Cube 1](images/electronics_box/16-1-ArduSimple-Cube.jpg)
-
-- For a cleaner looking box, we tape up the 4p connector and safety switch. You won't use the 4p connector. We don't use the safety switch, but you should use it unless you understand the implications of not using it. ![ArduSimple to Cube 2](images/electronics_box/16-2-ArduSimple-Cube.jpg) ![ArduSimple to Cube 3](images/electronics_box/16-3-ArduSimple-to-Cube.jpg) ![Cube GPS1 Cable](images/electronics_box/16-4-Cube-GPS1-Cable.jpg)
-
-- Connect GPS1 cable from the Cube autopilot to the ArduSimple GNSS receiver ![Cube GPS1 to Receiver](images/electronics_box/17-Cube-GPS1-to-Receiver.jpg)
-
-- Locate a USB-A to Micro-USB cable ![USB-A to Micro-USB](images/electronics_box/18-USB-A-to-Micro-USB.jpg)
-
-- Connect USB-A end to USB hub and the Micro-USB end to ArduSimple ![Micro-USB Connected](images/electronics_box/19-Micro-Connected.jpg)
+> **Legacy ZED-F9P build:** the original single-antenna ArduSimple / u-blox install (mount the ArduSimple on the standoffs, connect the u-blox antenna, run the Cube GPS1 cable to it, and a USB-A → Micro-USB to the hub) is no longer the recommended path. The [ArduSimple starter kit](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/) connects to Cube GPS1 the same way; load the legacy `.param` file per the [mower-client guide](OXCHIEF_MOWER_CLIENT_SETUP.md). (The original step-by-step photos for this variant were removed when the UM982 became the default.)
 
 - Locate Cube power module. Power cable will connect to Cube POWER1 port ![Power Module](images/electronics_box/20-Power-Module.jpg)
 
@@ -125,7 +117,7 @@ We need to drill 3 holes into the short sides of the electronics box.
 
 - Connect the power module to the Cube autopilot ![Power Module to Cube](images/electronics_box/23-Power-Module-Cube.jpg)
 
-- Power on the system to verify connections. Cube and ArduSimple should power on. Power system back off. ![Power On](images/electronics_box/24-Power-On.jpg)
+- Power on the system to verify connections. Cube and GNSS receiver should power on. Power system back off. ![Power On](images/electronics_box/24-Power-On.jpg)
 
 - Locate your Raspberry Pi 5. Active cooler adorns this one. ![Raspberry Pi with Fan](images/electronics_box/25-Raspberry-Pi-5-With-Fan.jpg)
 
