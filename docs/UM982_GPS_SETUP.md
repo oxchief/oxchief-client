@@ -35,7 +35,9 @@ Three independent links:
    **UM982 RX**. RTK corrections from your base station arrive over the cloud and
    the client writes them to this adapter. (Nothing changes here vs the F9P build.)
 3. **Configuration (UM982 → Pi, one time):** connect the **UM982's own USB port**
-   to the Pi while you run the setup step below. It shows up as a CH340 device.
+   to the Pi while you run the setup step below. Generic UM982 boards show up as a
+   CH340 (USB `1a86`); the Holybro H-RTK Unicore UM982 presents its USB-C config
+   port as an FTDI device (USB `0403`). The setup script auto-detects both.
 
 Mount the two antennas with a clear sky view on a **rigid, fixed baseline**. ANT1
 is the master (position) antenna and ANT2 is the slave (heading) antenna — heading

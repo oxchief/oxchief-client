@@ -1,3 +1,13 @@
+## [1.1.1] - 2026-06-12
+### Fixed
+- `scripts/configure_um982.py` auto-detection now matches the Holybro H-RTK
+  Unicore UM982. Its USB-C config port enumerates as an FTDI device (USB `0403`),
+  but the script only accepted the CH340 (`1a86`) used by generic UM982 boards, so
+  it reported "could not find a UM982" on a connected Holybro unit. Both vendor
+  IDs are now accepted; when more than one candidate port matches, each is probed
+  at the UM982 baud rates instead of guessing. The `--port` override is unchanged.
+  `docs/UM982_GPS_SETUP.md` updated to note Holybro presents as FTDI.
+
 ## [1.1.0] - 2026-05-30
 ### Added
 - Unicore UM982 dual-antenna GNSS support (now the recommended receiver). The

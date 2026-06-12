@@ -19,9 +19,11 @@ What it does:
     --baseline-cm (measured antenna spacing) and/or --heading-offset (when the
     antenna line is not along the vehicle's forward axis).
 
-Wiring assumption: the UM982's own USB port is connected to this machine (the
-receiver shows up as a CH340 device, USB vendor id 1a86). COM1 TX goes to the
-Cube's GPS1 port for navigation; that link is separate from this USB config link.
+Wiring assumption: the UM982's own USB port is connected to this machine. Generic
+UM982 boards show up as a CH340 (USB vendor id 1a86); the Holybro H-RTK Unicore
+UM982 presents its USB-C config port as an FTDI device (0403). Both are
+auto-detected. COM1 TX goes to the Cube's GPS1 port for navigation; that link is
+separate from this USB config link.
 
 Run it during setup, BEFORE starting the OxChief client (the client opens the
 GPS serial port, so stop the container first if it is already running).
@@ -45,6 +47,11 @@ import time
 # COM baud rate the UM982 should use (must match ArduPilot SERIAL3_BAUD=230 -> 230400).
 UM982_BAUD = 230400
 
+# USB vendor IDs the UM982 config port shows up as. Generic UM982 boards use a
+# CH340 (1a86); the Holybro H-RTK Unicore UM982 presents its USB-C config port as
+# an FTDI device (0403, e.g. 0403:6015). Accept both.
+UM982_USB_VENDOR_IDS = ("1a86", "0403")
+
 # NMEA sentences to enable on COM1 (the port wired to the flight controller's GPS1).
 # UNIHEADINGA + GPHDT carry the dual-antenna heading; the rest are position/quality.
 UM982_NMEA_COMMANDS = [
@@ -57,20 +64,53 @@ UM982_NMEA_COMMANDS = [
 ]
 
 
-def find_um982_port():
-    """Auto-detect the UM982 USB port by looking for a CH340 (USB vendor 1a86) device."""
-    for port in sorted(glob.glob("/dev/ttyUSB*")):
-        usb_num = port.replace("/dev/ttyUSB", "")
-        for pattern in (
-            f"/sys/class/tty/ttyUSB{usb_num}/device/../idVendor",
-            f"/sys/class/tty/ttyUSB{usb_num}/device/../../idVendor",
-        ):
-            try:
-                with open(pattern) as f:
-                    if f.read().strip() == "1a86":
-                        return port
-            except (IOError, OSError):
-                continue
+def _port_vendor_id(port):
+    """Return the USB idVendor (lowercase hex string) for a /dev/ttyUSB* port, or None."""
+    usb_num = port.replace("/dev/ttyUSB", "")
+    for pattern in (
+        f"/sys/class/tty/ttyUSB{usb_num}/device/../idVendor",
+        f"/sys/class/tty/ttyUSB{usb_num}/device/../../idVendor",
+    ):
+        try:
+            with open(pattern) as f:
+                return f.read().strip().lower()
+        except (IOError, OSError):
+            continue
+    return None
+
+
+def find_um982_ports():
+    """Auto-detect candidate UM982 USB ports.
+
+    Matches the CH340 (1a86, generic UM982 boards) and FTDI (0403, Holybro H-RTK
+    Unicore UM982) USB vendor IDs. Returns a list of matching /dev/ttyUSB* paths
+    (there may be more than one when other USB-serial adapters share a vendor).
+    """
+    return [
+        port
+        for port in sorted(glob.glob("/dev/ttyUSB*"))
+        if _port_vendor_id(port) in UM982_USB_VENDOR_IDS
+    ]
+
+
+def find_um982_port(baud=UM982_BAUD):
+    """Return the single UM982 port, probing candidates if more than one matches.
+
+    With one candidate, return it directly (the UM982() constructor verifies it
+    can actually talk before doing anything). With several, probe each at the
+    UM982 baud rates rather than guessing, and return the first that responds.
+    """
+    candidates = find_um982_ports()
+    if not candidates:
+        return None
+    if len(candidates) == 1:
+        return candidates[0]
+    for port in candidates:
+        try:
+            UM982(port, baud=baud).close()
+            return port
+        except Exception:
+            continue
     return None
 
 
@@ -231,9 +271,10 @@ def main():
                         "sets CONFIG HEADING OFFSET. Omit if ANT1 is forward of ANT2.")
     args = p.parse_args()
 
-    port = args.port or find_um982_port()
+    port = args.port or find_um982_port(baud=args.baud)
     if not port:
-        print("ERROR: could not find a UM982 (CH340 / USB 1a86) on /dev/ttyUSB*.")
+        print("ERROR: could not find a UM982 (CH340 / USB 1a86, or FTDI / USB 0403) "
+              "on /dev/ttyUSB*.")
         avail = sorted(glob.glob("/dev/ttyUSB*") + glob.glob("/dev/ttyACM*"))
         if avail:
             print(f"       available ports: {', '.join(avail)}")
