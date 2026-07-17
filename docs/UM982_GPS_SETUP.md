@@ -36,6 +36,27 @@ both names are listed. (On a generic UM982 board, match by COM number.)
 | **UART2** (6-pin) | COM2 | `_OxRTCM` USB-serial adapter | RTK corrections in from the Pi |
 | **USB-C** | COM3 | Pi USB | Setup script only (one time) |
 
+```mermaid
+flowchart LR
+  BAT["Mower battery"] --> PM02["PM02 power module"] --> P1["POWER1"]
+  subgraph CUBE["Cube Orange"]
+    P1
+    G1["GPS1"]
+  end
+  subgraph UM["UM982 receiver"]
+    U1["UART1 (COM1)"]
+    U2["UART2 (COM2)"]
+    U3["USB-C (COM3)"]
+  end
+  U1 -- "position + heading → Cube, 5V ← Cube" --- G1
+  PI["Raspberry Pi"] --> ADP["OxRTCM USB-serial adapter"]
+  ADP -- "TX → RX2 pin, GND → GND pin" --> U2
+  PI -. "setup script only, then unplug" .-> U3
+```
+
+(Pin-level detail for each connector is on
+[Holybro's pinout page](https://docs.holybro.com/gps-and-rtk-system/h-rtk-unicore-um982/pinout).)
+
 In detail:
 
 1. **Navigation (UM982 → flight controller):** plug the 10-pin **UART1** cable
@@ -49,6 +70,8 @@ In detail:
    over USB. No receiver configuration is needed for this link: the UM982
    accepts RTCM3 corrections on any port automatically, and the setup script
    below sets the port baud to match the client (230400).
+
+   ![UART2 corrections hookup — two wires only](images/um982/uart2_pins.svg)
 3. **Configuration (UM982 → Pi, one time):** connect the **USB-C** port to the
    Pi while you run the setup step below, then unplug it. Generic UM982 boards
    show up as a CH340 (USB `1a86`); the Holybro H-RTK Unicore UM982 presents

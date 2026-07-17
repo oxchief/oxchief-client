@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" font-family="Helvetica, Arial, sans-serif">
+  <rect width="640" height="300" fill="#ffffff"/>
+  <text x="320" y="28" text-anchor="middle" font-size="17" font-weight="bold" fill="#111">UM982 UART2 (6-pin JST-GH) — corrections hookup</text>
+
+  <!-- connector body -->
+  <rect x="90" y="60" width="460" height="70" rx="8" fill="#e8e8e8" stroke="#444" stroke-width="2"/>
+  <!-- keying notch -->
+  <rect x="270" y="52" width="100" height="8" fill="#444"/>
+
+  <!-- pins -->
+  <g font-size="13" text-anchor="middle">
+    <rect x="110" y="75" width="50" height="40" fill="#fddddd" stroke="#a33"/>
+    <text x="135" y="99" fill="#a33" font-weight="bold">5V</text>
+
+    <rect x="185" y="75" width="50" height="40" fill="#d9f2d9" stroke="#2a7"/>
+    <text x="210" y="99" fill="#151" font-weight="bold">RX2</text>
+
+    <rect x="260" y="75" width="50" height="40" fill="#f4f4f4" stroke="#888"/>
+    <text x="285" y="99" fill="#555">TX2</text>
+
+    <rect x="335" y="75" width="50" height="40" fill="#f4f4f4" stroke="#888"/>
+    <text x="360" y="99" fill="#555">NC</text>
+
+    <rect x="410" y="75" width="50" height="40" fill="#f4f4f4" stroke="#888"/>
+    <text x="435" y="99" fill="#555">PPS</text>
+
+    <rect x="485" y="75" width="50" height="40" fill="#d9e6f7" stroke="#26c"/>
+    <text x="510" y="99" fill="#123" font-weight="bold">GND</text>
+  </g>
+
+  <!-- pin 1 marker -->
+  <text x="135" y="150" text-anchor="middle" font-size="12" fill="#a33">pin 1 (red wire)</text>
+
+  <!-- do-not-connect X over 5V -->
+  <g stroke="#c22" stroke-width="3">
+    <line x1="112" y1="77" x2="158" y2="113"/>
+    <line x1="158" y1="77" x2="112" y2="113"/>
+  </g>
+
+  <!-- wires from adapter -->
+  <g stroke-width="3" fill="none">
+    <path d="M210 180 L210 118" stroke="#2a7" marker-end="url(#ag)"/>
+    <path d="M510 180 L510 118" stroke="#26c" marker-end="url(#ab)"/>
+  </g>
+  <defs>
+    <marker id="ag" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2a7"/></marker>
+    <marker id="ab" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#26c"/></marker>
+  </defs>
+
+  <!-- adapter box -->
+  <rect x="150" y="180" width="420" height="52" rx="8" fill="#f7f7f7" stroke="#444" stroke-width="2"/>
+  <text x="360" y="202" text-anchor="middle" font-size="14" font-weight="bold" fill="#111">OxRTCM USB-serial adapter (plugged into the Pi)</text>
+  <text x="360" y="222" text-anchor="middle" font-size="13" fill="#333">signal wire (adapter TX) → RX2&#160;&#160;&#160;&#160;•&#160;&#160;&#160;&#160;ground wire → GND</text>
+
+  <text x="320" y="270" text-anchor="middle" font-size="13" fill="#a33" font-weight="bold">Do NOT connect the 5V pin — the adapter is powered by the Pi's USB.</text>
+  <text x="320" y="290" text-anchor="middle" font-size="12" fill="#666">TX2 / NC / PPS stay empty. Only two wires go into this plug.</text>
+</svg>
