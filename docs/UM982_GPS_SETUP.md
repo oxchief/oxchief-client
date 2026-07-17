@@ -20,24 +20,48 @@ UM982.
 | Part | Notes |
 |---|---|
 | Unicore UM982 dual-antenna RTK receiver + 2 antennas | A UM982 board with two antenna connectors (ANT1 = position, ANT2 = heading). Most UM982 kits ship with both antennas. The UM980 does position but not heading — get the UM982. |
-| OxChief `_OxRTCM` USB-to-serial adapter | Carries RTK corrections from the Pi into the UM982's RX (same as the F9P build). |
+| OxChief `_OxRTCM` USB-to-serial adapter | Carries RTK corrections from the Pi into the UM982 (RX2 pin on the UART2/COM2 connector — see Wiring below). |
 
 **Where to buy:** the [Holybro H-RTK Unicore UM982 (Dual Antenna Heading)](https://holybro.com/products/h-rtk-unicore-um982) (~$250, includes both helical antennas and cables) is a turnkey, ArduPilot-ready option. On a budget, a generic "UM982 + 2-antenna kit" on AliExpress runs ~$130 (search *"UM982 dual antenna RTK kit"*) — same receiver, lower-grade antennas. Either way, mount the two antennas with a fixed separation (the "baseline"); a longer baseline gives more precise heading (~0.5 m+ is typical on a mower).
 
 ### Wiring
 
-Three independent links:
+Three connections. The table below uses the connector names printed on the
+Holybro unit; the UM982 datasheet calls these same ports COM1/COM2/COM3, so
+both names are listed. (On a generic UM982 board, match by COM number.)
 
-1. **Navigation (UM982 → flight controller):** UM982 **COM1 TX → Cube GPS1 port**
-   (ArduPilot `SERIAL3`). The UM982 sends NMEA — including the dual-antenna
-   heading — to the Cube here.
-2. **Corrections (Pi → UM982):** the `_OxRTCM` USB-serial adapter from the Pi →
-   **UM982 RX**. RTK corrections from your base station arrive over the cloud and
-   the client writes them to this adapter. (Nothing changes here vs the F9P build.)
-3. **Configuration (UM982 → Pi, one time):** connect the **UM982's own USB port**
-   to the Pi while you run the setup step below. Generic UM982 boards show up as a
-   CH340 (USB `1a86`); the Holybro H-RTK Unicore UM982 presents its USB-C config
-   port as an FTDI device (USB `0403`). The setup script auto-detects both.
+| Connector on the receiver | UM982 port name | Connects to | Carries |
+|---|---|---|---|
+| **UART1** (10-pin) | COM1 | Cube **GPS1** port | Position + heading to the Cube; 5V power back to the receiver |
+| **UART2** (6-pin) | COM2 | `_OxRTCM` USB-serial adapter | RTK corrections in from the Pi |
+| **USB-C** | COM3 | Pi USB | Setup script only (one time) |
+
+In detail:
+
+1. **Navigation (UM982 → flight controller):** plug the 10-pin **UART1** cable
+   into the Cube's **GPS1** port (ArduPilot `SERIAL3`). The UM982 sends NMEA —
+   including the dual-antenna heading — to the Cube here. This is the full
+   cable that ships with the Holybro unit; use it as-is.
+2. **Corrections (Pi → UM982):** the `_OxRTCM` USB-serial adapter's signal
+   wire (the adapter's TX) goes to the **RX2 pin** on the 6-pin **UART2**
+   connector, and its ground wire to the **GND pin** on that same connector.
+   **Leave UART2's 5V pin unconnected** — the adapter is powered by the Pi
+   over USB. No receiver configuration is needed for this link: the UM982
+   accepts RTCM3 corrections on any port automatically, and the setup script
+   below sets the port baud to match the client (230400).
+3. **Configuration (UM982 → Pi, one time):** connect the **USB-C** port to the
+   Pi while you run the setup step below, then unplug it. Generic UM982 boards
+   show up as a CH340 (USB `1a86`); the Holybro H-RTK Unicore UM982 presents
+   its USB-C config port as an FTDI device (USB `0403`). The setup script
+   auto-detects both.
+
+**How everything gets power:** the PM02 power module powers the *Cube* — mower
+battery → PM02 → Cube **POWER1** port (this is also how the Cube measures
+battery voltage/current; see [Electronics Box Setup](ELECTRONICS_BOX_SETUP.md)).
+The UM982 then draws its 5V *from the Cube* through the UART1/GPS1 cable. The
+receiver is only USB-powered while it's plugged into the Pi for the one-time
+setup step — on the mower it runs off the Cube, and the USB-C port stays
+unplugged.
 
 Mount the two antennas with a clear sky view on a **rigid, fixed baseline**. ANT1
 is the master (position) antenna and ANT2 is the slave (heading) antenna — heading
