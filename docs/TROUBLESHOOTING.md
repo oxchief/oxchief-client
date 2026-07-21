@@ -184,8 +184,7 @@ loss"). If nothing comes back, the Pi isn't online — fix its internet connecti
 
 ## Still stuck? Here's exactly what to send us
 
-Post on the [OxChief subreddit](https://www.reddit.com/r/OxChief/) (or email
-support) and include:
+Email [support@oxchief.com](mailto:support@oxchief.com) and include:
 
 1. What's running:
    ```

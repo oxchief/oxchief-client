@@ -76,4 +76,4 @@ Review the [OxChief Features](docs/OXCHIEF_FEATURES.md) guide for an overview of
 
 Robot not showing up as **online**? See the [Troubleshooting guide](docs/TROUBLESHOOTING.md) -- it's almost always one small thing.
 
-Please feel free to hit [OxChief Reddit](https://www.reddit.com/r/OxChief/) with any questions.
+A dedicated OxChief community forum is coming soon. In the meantime, feel free to email us at [support@oxchief.com](mailto:support@oxchief.com) with any questions.
