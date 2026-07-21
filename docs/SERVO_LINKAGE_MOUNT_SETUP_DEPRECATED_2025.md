@@ -84,7 +84,7 @@ You can avert this by adding [Loctite](https://www.amazon.com/Loctite-Heavy-Duty
     - Zip tie the wires together so that the signal wire isn't torqued if the wiring harness is tugged
     - Dab some electronic grade silicone over the pins on this board to secure.
 
-![](images/bad_boy/Wingxine-Electronic-Grade-Silicone-1.jpg)
+![](images/bad_boy/Wingxine-Electronic-Grade-Silicone.jpg)
 
 Now your left and right Wingxine servos are ready to mount inside the OxChief Servo enclosures.
 
