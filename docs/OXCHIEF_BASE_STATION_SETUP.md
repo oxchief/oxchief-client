@@ -38,9 +38,9 @@ Here's what you're going to do:
 
 3. Clone OxChief client source to your Raspberry Pi at `/home/pi/src/oxchief/oxchief-client`.
 
-4. Add a new Base Station in [OxChief](https://oxchief.com/control/settings/).
+4. Add a new Base Station in OxChief: log in and open your [Account page](https://oxchief.com/control/account) --> scroll to the "**Base Stations**" table --> click "**Add**", name your base, and save. Then click "**Download .oxchief base file**" in your new base station's row.
 
-![Base Station Add](images/base-station-add-sequence.gif)
+![Base Station Add](images/base-station-add.png)
 
 5. Copy the `oxchief` file to your base station at `/home/pi/src/oxchief/.oxchief`. Note that the oxchief file downloads as `oxchief`, but you will be adding a `.` to it (and thus naming it `.oxchief`).
 

@@ -97,8 +97,8 @@ ls -la /home/pi/src/oxchief/.oxchief
 
 - If you see the file listed, good — it's in the right place.
 - If you see *"No such file or directory,"* it's missing or misplaced.
-  Re-download it from oxchief.com (**Settings → click your robot → "Download
-  .oxchief client file"**) and save it to exactly the path above.
+  Re-download it from oxchief.com (**Fleet → click your robot → Config tab →
+  "Download .oxchief client file"**) and save it to exactly the path above.
 
 Then start again with `sudo ./re.sh`.
 

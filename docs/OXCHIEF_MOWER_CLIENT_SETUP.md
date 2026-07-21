@@ -41,21 +41,21 @@ mkdir -p /home/pi/src/oxchief
 cd /home/pi/src/oxchief
 git clone https://github.com/oxchief/oxchief-client.git
 ```
-2. Create an account/subscribe on [OxChief](https://oxchief.com/signup/) (first 14 days are free)
-3. Add robot in OxChief via https://oxchief.com/control/settings/ --> "Add Robot"
+2. Create an account/subscribe on [OxChief](https://oxchief.com/signup/) (first 60 days are free)
+3. Add your robot: log in and you'll land on the **Fleet** page at https://oxchief.com/control/ --> click the green "**Add robot**" button (it's front-and-center when you have no robots yet).
 ![OxChief Add Robot](images/oxchief_ui/OxChief-Add-Robot.png)
 
-4. Download the `.oxchief` file for your robot from https://oxchief.com/ --> Click "Settings" tab --> Under "Robot Configuration" click your robot --> Scroll down settings page to "OxChief File" and click the blue "Download .oxchief client file" button.
+4. Download the `.oxchief` file for your robot: from the Fleet page click your robot --> open its "**Config**" tab --> scroll to "**OxChief Client File**" and click the "**Download .oxchief client file**" button.
 ![OxChief Client File](images/oxchief_ui/OxChief-Client-File.png)
 5. Copy `.oxchief` file to your robot at `/home/pi/src/oxchief/.oxchief`
 6. NEVER SHARE your `.oxchief` file. This file authenticates your robot to the OxChief server. 
-7. Start oxchief on your Raspberry Pi vi:
+7. Start oxchief on your Raspberry Pi via:
 ```
 cd /home/pi/src/oxchief/oxchief-client
 sudo ./re.sh
 ```
 8. Log in to [OxChief](https://oxchief.com/) and verify your robot is connected and ready:
-![OxChief Client File](images/oxchief_ui/OxChief-Control-Live.gif)
+![OxChief Control Live](images/oxchief_ui/OxChief-Control-Live.gif)
 
 > Robot still showing **offline**? Don't worry — it's almost always one small thing. Walk through the [Troubleshooting guide](TROUBLESHOOTING.md).
 
