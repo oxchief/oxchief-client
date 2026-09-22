@@ -2,6 +2,8 @@
 
 Robot client for [OxChief](https://oxchief.com/) autonomous mower platform.
 
+Supports Bad Boy Rambler, Maverick and Maverick HD (model year 2023+). Hardware: [Alpha servo kit](https://shop.oxchief.com/products/oxchief-alpha-bolt-on-servo-assembly) · Just want remote control? [RC kit](https://shop.oxchief.com/products/oxchief-rc)
+
 > :warning: **WARNING: OxChief is experimental software**: it should not be used where it could be in control of human safety. It should not be in control of the safety of anything that you don't want destroyed. It will make unepexected mistakes. It will behave in unexpected ways. Use at your own risk.
 
 ## Motivation
